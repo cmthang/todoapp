@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Todolist Vuejs</title>
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" v-model="task" />
+            <button v-on:click="addTask()">Add</button>
+            <p v-show="!tasks.length">No task</p>
+            <ul>
+                <li v-for="task in tasks">
+                    {{ task.name }}
+                    <a href="#" v-on:click.prevent="removeTask(task)">Remove</a>
+                </li>
+            </ul>
+        </div>
+
+        <script src="https://unpkg.com/vue@next"></script>
+        <script>
+            Vue.createApp ({
+                data() {
+                    return {
+                        tasks: [],
+                        task: "",
+                    };
+                },
+                created() {
+                    this.task = JSON.parse(localStorage.getItem("tasks")) || [];
+                },
+                methods: {
+                    addTask() {
+                        this.tasks.push ({
+                            id: Date.now(),
+                            name: this.task,
+                        });
+                        localStorage.setItem("tasks", JSON.stringify(this.tasks));
+                        this.task = "";
+                    },
+
+                    removeTask(task) {
+                        let newTasks = this.tasks.filter(function (item){
+                            return task.id !== item.id;
+                        });
+
+                        this.tasks = newTasks;
+                        localStorage.setItem("tasks", JSON.stringify(this.tasks));
+                    },
+                },
+            }).mount("#app");
+        </script>
+    </body>
+</html>
