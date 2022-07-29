@@ -3,11 +3,38 @@
     text-align: center;
 }
 
-.content{
+h4 {
+    margin: 0;
+    padding: 0;
+}
 
+.content{
+    color: rgb(255, 102, 102);
+}
+.buttonAdd {
+    outline-style: auto;
+    background-color: transparent;
+    border-radius: 9px;
+    color:green;
+    margin-left: 7px;
+    padding-top: 2px;
 }
 
 .input {
-    border: 2px solid red;
+
+}
+
+.inputBar {
+    border-color: blueviolet;
+}
+
+.itemList {
+    color: rgb(255,153,51);
+    margin-top: 7px;
+}
+
+.buttonRemove {
+    color: rgb(255,102,178);
+    padding-left: 15px;
 }
 
