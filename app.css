@@ -18,10 +18,12 @@ h4 {
     color:green;
     margin-left: 7px;
     padding-top: 2px;
+    display:flex; 
+    align-items:center; 
+    height: 24px;
 }
 
 .input {
-
 }
 
 .inputBar {
@@ -36,5 +38,9 @@ h4 {
 .buttonRemove {
     color: rgb(255,102,178);
     padding-left: 15px;
+}
+
+.textButton {
+    padding-left: 2px;
 }
 
