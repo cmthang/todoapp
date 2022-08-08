@@ -1,3 +1,7 @@
+html {
+    background-color: #FCDAD5;
+}
+
 #app {
     width: 100%;
     text-align: center;
@@ -6,6 +10,17 @@
 h4 {
     margin: 0;
     padding: 0;
+}
+
+.index {
+    display: inline-flex;
+    align-items: center;
+}
+.oneLine{
+}
+
+.lineIndex{
+    color: #C18C00;
 }
 
 .content{
@@ -24,6 +39,8 @@ h4 {
 }
 
 .input {
+    display: inline-flex;
+
 }
 
 .inputBar {
@@ -32,15 +49,33 @@ h4 {
 
 .itemList {
     color: rgb(255,153,51);
-    margin-top: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .buttonRemove {
     color: rgb(255,102,178);
-    padding-left: 15px;
 }
 
 .textButton {
     padding-left: 2px;
 }
 
+.weatherWidget {
+
+}
+
+.weatherWidgetTableOne{
+    border-top: 2px solid #DF0029;
+    border-bottom: 2px solid #50A625;
+    border-left: 2px solid #00676B;
+    width: 50%;
+}
+
+.weatherWidgetTableTwo {
+    border-top: 2px solid #DF0029;
+    border-right: 2px solid #C18C00;
+    border-bottom: 2px solid #50A625;
+    border-left: 2px solid #363636;
+    width: 50%;
+}
