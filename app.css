@@ -61,21 +61,8 @@ h4 {
     padding-left: 2px;
 }
 
-.weatherWidget {
-
-}
-
-.weatherWidgetTableOne{
-    border-top: 2px solid #DF0029;
-    border-bottom: 2px solid #50A625;
-    border-left: 2px solid #00676B;
-    width: 50%;
-}
-
-.weatherWidgetTableTwo {
-    border-top: 2px solid #DF0029;
-    border-right: 2px solid #C18C00;
-    border-bottom: 2px solid #50A625;
-    border-left: 2px solid #363636;
-    width: 50%;
+.buttonFix {
+    margin-left: 5px;
+    margin-right: 5px;
+    color: rgb(200,46,49);
 }
