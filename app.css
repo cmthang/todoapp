@@ -67,3 +67,11 @@ h4 {
     margin-right: 5px;
     color: rgb(200,46,49);
 }
+
+.generatePassword{
+    padding-bottom: 10px;
+}
+
+.buttonPassword {
+    color: rgb(0,128,128);
+}
