@@ -96,26 +96,20 @@ Vue.createApp ({
             {
                 console.log(error);
             }
-            // alert("Generate password "+password.length+" characters");
             return this.task = password;
         },
-
-        //does not work on http 
-        // copy(task){
-        //     navigator.clipboard.writeText(task.name);
-        // }
 
         copy(task){
             // navigator clipboard api needs a secure context (https)
             if (navigator.clipboard && window.isSecureContext) {
                 // navigator clipboard api method'
-                return navigator.clipboard.writeText(task.name);
+                return navigator.clipboard.writeText(textToCopy);
             } 
             else 
             {
                 // text area method
-                let textArea = document.createElement("textarea");
-                textArea.value = textToCopy;
+                let textArea = document.createElement("textArea");
+                textArea.value = task.name;
                 // make the textarea out of viewport
                 textArea.style.position = "fixed";
                 textArea.style.left = "-999999px";
