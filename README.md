@@ -10,4 +10,9 @@ Version 4.1:
     
     Date: Thursday, August 18th 2022.
     Note: Fix button Copy can work on http. 
+
+Version 5:
+
+    Date: Thursday, August 18th 2022.
+    Note: Add checkbox setting generate password (alpha, Alpha, Numbers, Symbols)
     
