@@ -3,10 +3,14 @@ Vue.createApp ({
         return {
             tasks: [],
             task: "",
+
+            length: 20,
+            picked: ["alpha", "capitalAlpha", "Numbers", "Symbols"],
+
         };
     },
     created() {
-        this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];        
     },
     methods: {
         addTask() {
@@ -44,23 +48,42 @@ Vue.createApp ({
 
         generatePassword()
         {
+
             const alpha = "abcdefghijklmnopqrstuvwxyz";
             const capitalAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const numbers = "0123456789";
             const symbols = "!@#$%^&*_-+=";
 
-            let defaultLength = 20;
-            let length;
-
-            let characters = alpha + capitalAlpha + numbers + symbols;
+            const defaultLength = 20;
 
             let password = "";
             
             try {
-                if (this.task != "")
+                var characters ="";
+
+                if (this.picked.includes("Symbols"))
                 {
-                    length = Math.floor(this.task);
-                    if (length < 40)
+                    characters += symbols;
+                }    
+                if (this.picked.includes("Numbers"))
+                    {
+                        characters += numbers;
+                    }
+                if (this.picked.includes("alpha"))
+                    {
+                        characters += alpha;
+                    }
+                if (this.picked.includes("capitalAlpha"))
+                    {
+                        characters += capitalAlpha;
+                    }
+
+                var length = this.length;
+
+                if (length != "")
+                {
+                    length = Math.floor(length);
+                    if (length <= 47 && length > 0)
                     {
                         for (let i = 0; i < length; i++)
                         {
@@ -96,6 +119,7 @@ Vue.createApp ({
             {
                 console.log(error);
             }
+
             return this.task = password;
         },
 
