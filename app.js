@@ -14,7 +14,7 @@ Vue.createApp ({
     },
     methods: {
         addTask() {
-            if (this.task)
+            if (this.task != "")
             {
                 this.tasks.push ({
                     id: Date.now(),
@@ -33,8 +33,8 @@ Vue.createApp ({
             localStorage.setItem("tasks", JSON.stringify(this.tasks));
         },
 
-        fixTask(task, index) {
-            if (this.task) 
+        fixTask(index) {
+            if (this.task != "") 
             {
                 this.tasks[index]['name'] = this.task;
                 this.task = "";
@@ -66,17 +66,17 @@ Vue.createApp ({
                     characters += symbols;
                 }    
                 if (this.picked.includes("Numbers"))
-                    {
+                {
                         characters += numbers;
-                    }
+                }
                 if (this.picked.includes("alpha"))
-                    {
+                {
                         characters += alpha;
-                    }
+                }
                 if (this.picked.includes("capitalAlpha"))
-                    {
+                {
                         characters += capitalAlpha;
-                    }
+                }
 
                 var length = this.length;
 
@@ -127,7 +127,7 @@ Vue.createApp ({
             // navigator clipboard api needs a secure context (https)
             if (navigator.clipboard && window.isSecureContext) {
                 // navigator clipboard api method'
-                return navigator.clipboard.writeText(textToCopy);
+                return navigator.clipboard.writeText(task.name);
             } 
             else 
             {
