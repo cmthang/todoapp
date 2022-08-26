@@ -7,11 +7,37 @@ Vue.createApp ({
             length: 20,
             picked: ["alpha", "capitalAlpha", "Numbers", "Symbols"],
 
+            code: "AddingCode",
+            codeLength: 7, 
+
+            fullData: [],
+            accounts: [],
         };
     },
     created() {
-        this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];        
+        try
+        {
+            this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];   
+            this.fullData = JSON.parse(localStorage.getItem("fullData")) || [];
+            this.flagAccount();
+        }
+        catch (e){
+            console.log(e);
+        }
     },
+
+    watch: {
+        loading(){},
+    },
+
+    computed: {
+        loading(){
+            this.accounts = this.fullData.filter((data)=>{
+                return this.code == data.code;
+            });
+        },
+    },
+
     methods: {
         addTask() {
             if (this.task != "")
@@ -43,7 +69,7 @@ Vue.createApp ({
         },
 
         clearInput(){
-            this.task = "";
+            localStorage.setItem("tasks", JSON.stringify(this.tasks));
         },
 
         generatePassword()
@@ -123,17 +149,56 @@ Vue.createApp ({
             return this.task = password;
         },
 
-        copy(task){
+        isClean(){
+            localStorage.setItem("fullData", []);
+        },
+
+        getData(){
+
+            const options = {
+                method: 'GET',
+                url: 'https://apichallengermydragon.000webhostapp.com/api/account',
+            }
+
+            try {
+                axios.request(options).then((response) =>
+                {
+                    this.fullData = response.data;
+                    localStorage.setItem("fullData", JSON.stringify(this.fullData));
+                })
+    
+            }
+            catch(err){
+                console.log(err);
+            }
+
+        },
+
+        isRedirect(link){
+            window.open(link);
+        },
+
+        flagAccount(){
+            if(this.code.length >= this.codeLength)
+                return true;    
+            return false;
+        },
+
+        isTakes(){
+            this.getData();
+        },
+
+        copy(getText){
             // navigator clipboard api needs a secure context (https)
             if (navigator.clipboard && window.isSecureContext) {
                 // navigator clipboard api method'
-                return navigator.clipboard.writeText(task.name);
+                return navigator.clipboard.writeText(getText);
             } 
             else 
             {
                 // text area method
                 let textArea = document.createElement("textArea");
-                textArea.value = task.name;
+                textArea.value = getText;
                 // make the textarea out of viewport
                 textArea.style.position = "fixed";
                 textArea.style.left = "-999999px";
@@ -147,7 +212,7 @@ Vue.createApp ({
                     textArea.remove();
                 });
             }        
-        }
 
+        }
     },
 }).mount("#app");
