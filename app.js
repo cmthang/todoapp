@@ -1,4 +1,5 @@
 Vue.createApp ({
+
     data() {
         return {
             tasks: [],
@@ -12,8 +13,22 @@ Vue.createApp ({
 
             fullData: [],
             accounts: [],
+
+            isShow: true,
+            isHide: false,
+
+            getId: '',
+            id: '',
+            pageName: "",
+            userName: "",
+            password: "",
+            link: "",
+            info: "",
+            note: "",
+            editCode: "",
         };
     },
+
     created() {
         try
         {
@@ -23,7 +38,7 @@ Vue.createApp ({
         }
         catch (e){
             console.log(e);
-        }
+        };
     },
 
     watch: {
@@ -157,7 +172,8 @@ Vue.createApp ({
 
             const options = {
                 method: 'GET',
-                url: 'https://apichallengermydragon.000webhostapp.com/api/account',
+                // url: 'https://apichallengermydragon.000webhostapp.com/api/account',
+                url: 'http://localhost:8000/api/account',
             }
 
             try {
@@ -165,6 +181,7 @@ Vue.createApp ({
                 {
                     this.fullData = response.data;
                     localStorage.setItem("fullData", JSON.stringify(this.fullData));
+                    console.log(response.data);
                 })
     
             }
@@ -172,6 +189,68 @@ Vue.createApp ({
                 console.log(err);
             }
 
+        },
+
+        addData(){
+            const options = {
+                method: 'POST',
+                // url: 'https://apichallengermydragon.000webhostapp.com/api/account',
+                url: 'http://localhost:8000/api/account/',
+
+                data: {
+                    'account_page' : "this.pageName",
+                    'account_name' : "this.userName",
+                    'account_password' : "this.password",
+                    'account_link' : "http://www.nettruyenme.com/",
+                    'account_info' : "Hegemony No. 1. Unstoppable. The road does not return. No explanation",
+                    'account_note' : "Big Waves",
+                    'code': this.code,  
+                }
+            }
+            try {
+                axios.request(options).then((response) =>
+                {
+                    this.getData();
+                    console.log(response);
+                })
+            }
+            catch(err){
+                console.log(err);
+            }
+
+            this.isShow = false;
+            this.isHide = true;
+        },
+
+        editData(){
+            const options = {
+                method: 'PUT',
+                // url: 'https://apichallengermydragon.000webhostapp.com/api/account',
+                url: 'http://localhost:8000/api/account/'+this.id,
+
+                data: {
+                    'account_page' : this.pageName,
+                    'account_name' : this.userName,
+                    'account_password' : this.password,
+                    'account_link' : this.link,
+                    'account_info' : this.info,
+                    'account_note' : this.note,
+                    'code': this.editCode,
+                }
+            }
+            try {
+                axios.request(options).then(() =>
+                {
+                    this.getData();
+                })
+    
+            }
+            catch(err){
+                console.log(err);
+            }
+
+            this.isShow = false;
+            this.isHide = true;
         },
 
         isRedirect(link){
@@ -213,34 +292,44 @@ Vue.createApp ({
                 });
             }        
 
+        },
+
+        openModal($account){
+            this.isHide = false;
+            this.isShow = true;
+
+            this.getId = $account.id;
+            this.id = this.getId;
+            this.pageName = $account.account_page;
+            this.userName = $account.account_name;
+            this.password = $account.account_password;
+            this.link = $account.account_link;
+            this.info = $account.account_info;
+            this.note = $account.account_note;
+            this.editCode = $account.code;
+
+            this.getId = '';
+        },
+
+        showModal(){
+            this.isHide = false;
+            this.isShow = true;
+
+            this.pageName = "pageName",
+            this.userName = "userName",
+            this.password = "password",
+            this.link = "http://www.nettruyenme.com/",
+            this.info = "Hegemony No. 1. Unstoppable. The road does not return. No explanation",
+            this.note = "Big Waves",
+            this.editCode = "AddingCode"
+
+        },
+
+        closeModal(){
+            this.isHide = true;
+            this.isShow = false;
         }
     },
     
 }).mount("#app");
 
-
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
