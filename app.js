@@ -84,7 +84,7 @@ Vue.createApp ({
         },
 
         clearInput(){
-            localStorage.setItem("tasks", JSON.stringify(this.tasks));
+            this.task = "";
         },
 
         generatePassword()

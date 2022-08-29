@@ -133,9 +133,9 @@
                         <tr style="color: rgb(102,0,51);">
                             <td><h4>Index</h4></td>
                             <td><h4>Page</h4></td>
+                            <td><h4>Link</h4></td>
                             <td><h4>UserName</h4></td>
                             <td><h4>Password</h4></td>
-                            <td><h4>Link</h4></td>
                             <td><h4>Info</h4></td>
                             <td><h4>Note</h4></td>
                             <td>
@@ -154,6 +154,11 @@
                             <td>{{index+1}}</td>
                             <td>{{account.account_page}}</td>
                             <td>
+                                <a href="#" v-on:click.prevent="isRedirect(account.account_link)" class="buttonFix" style="display:inline-flex ;">
+                                    {{account.account_link}}
+                                </a>
+                            </td>
+                            <td>
                                 <h4>{{account.account_name}}</h4>
                                 <a href="#" v-on:click.prevent="copy(account.account_name)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-android" viewBox="0 0 16 16">
@@ -169,11 +174,6 @@
                                         <path d="M2.76 3.061a.5.5 0 0 1 .679.2l1.283 2.352A8.94 8.94 0 0 1 8 5a8.94 8.94 0 0 1 3.278.613l1.283-2.352a.5.5 0 1 1 .878.478l-1.252 2.295C14.475 7.266 16 9.477 16 12H0c0-2.523 1.525-4.734 3.813-5.966L2.56 3.74a.5.5 0 0 1 .2-.678ZM5 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm6 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/>
                                     </svg>
                                     Get
-                                </a>
-                            </td>
-                            <td>
-                                <a href="#" v-on:click.prevent="isRedirect(account.account_link)" class="buttonFix" style="display:inline-flex ;">
-                                    {{account.account_link}}
                                 </a>
                             </td>
                             <td>{{account.account_info}}</td>
@@ -195,54 +195,69 @@
             <div class="modalAccounts">
                 <div id="myModal" v-bind:class="{hideModal:isHide, showModal:isShow}">
                     <div class="modal-content">
-                        <h2>Edit Account</h2>
-                        <button v-on:click="closeModal()" 
-                        style="width: 40px;height: 40px;">
-                            X
-                        </button>
-
-                        <div class="inputEditPage">
-                            <label>PageName:</label>
-                            <input v-model="pageName"/>
+                        
+                        <div style="display: flex; justify-content:space-between; align-items: center; width:50%; margin: auto;">
+                            <div>
+                                <h2>Edit Account</h2>
+                            </div>
+                            <div>
+                                <label>Code:</label>
+                                <input v-model="editCode" style="width: 140px;"/>
+                            </div>
                         </div>
-    
-                        <div class="inputEditPage">
-                            <label>UserName:</label>
-                            <input v-model="userName"/>
-                        </div>
+                    
+                        <div style="display:flex; margin: auto; justify-content: space-between;
+                         align-items: center;">
+                            <div>
+                                <div style="width: 45%;">
+                                    <div class="" style="display: flex;">
+                                        <label>PageName:</label>
+                                        <input v-model="pageName"/>
+                                    </div>
 
-                        <div class="inputEditPage">
-                            <label>Password:</label>
-                            <input v-model="password"/>
-                        </div>
+                                    <div class="" style="display: flex;">
+                                        <label>Link:</label>
+                                        <input v-model="link"/>
+                                    </div>
+                                </div>
 
-                        <div class="inputEditPage">
-                            <label>Link:</label>
-                            <input v-model="link"/>
-                        </div>
+                                <div style=" width: 45%;">
+                                    <div style="display: flex;">
+                                        <label>UserName:</label>
+                                        <input v-model="userName"/>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <label>Password:</label>
+                                        <input v-model="password"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="width: 55%;">
+                                <div class="" style="">
+                                    <label>Info:</label>
+                                    <textarea v-model="info">
+                                        Info
+                                    </textarea>
+                                </div>
 
-                        <div class="inputEditPage">
-                            <label>Info:</label>
-                            <textarea v-model="info">
-                                Info
-                            </textarea>
+                                <div class="" style="">
+                                    <label>Note:</label>
+                                    <textarea v-model="note">
+                                        Note
+                                    </textarea>
+                                </div>
+                            </div>
                         </div>
+                        <div>
+                            <button v-on:click="editData()">
+                                Update
+                            </button>
 
-                        <div class="inputEditPage">
-                            <label>Note:</label>
-                            <textarea v-model="note">
-                                Note
-                            </textarea>
+                            <button v-on:click="closeModal()">
+                                Close
+                            </button>
                         </div>
-
-                        <div class="inputEditPage">
-                            <label>Code:</label>
-                            <input v-model="editCode"/>
-                        </div>
-
-                        <button v-on:click="editData()">
-                            Update
-                        </button>
                     </div>
                 </div>
             </div>
