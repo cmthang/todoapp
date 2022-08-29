@@ -14,8 +14,8 @@ Vue.createApp ({
             fullData: [],
             accounts: [],
 
-            isShow: true,
-            isHide: false,
+            isShow: false,
+            isHide: true,
 
             getId: '',
             id: '',
@@ -181,7 +181,6 @@ Vue.createApp ({
                 {
                     this.fullData = response.data;
                     localStorage.setItem("fullData", JSON.stringify(this.fullData));
-                    console.log(response.data);
                 })
     
             }
@@ -200,18 +199,17 @@ Vue.createApp ({
                 data: {
                     'account_page' : "this.pageName",
                     'account_name' : "this.userName",
-                    'account_password' : "this.password",
-                    'account_link' : "http://www.nettruyenme.com/",
+                    'account_password' : "lB3xD5!xa5*nmW7ZG#s1",
+                    'account_link' : "https://bigger2407.blogspot.com/",
                     'account_info' : "1.Hegemony No. 1. Unstoppable"+"2.The road does not return."+"3.No explanation",
                     'account_note' : "Big Waves",
                     'code': this.code,  
                 }
             }
             try {
-                axios.request(options).then((response) =>
+                axios.request(options).then(() =>
                 {
                     this.getData();
-                    console.log(response);
                 })
             }
             catch(err){

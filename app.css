@@ -24,7 +24,7 @@ h4 {
 
 .content{
     color: rgb(255, 102, 102);
-    height: 50px;
+    height:80px;
 }
 .buttonAddClear {
     outline-style: auto;
@@ -152,6 +152,9 @@ table, th, td {
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    height: 400px;
+    background-color: rgb(51,0,25);
+    color:rgb(255,255,51);
 }
   
   /* The Close Button */
@@ -168,3 +171,88 @@ table, th, td {
     text-decoration: none;
     cursor: pointer;
   }
+
+
+.tableAccounts {
+    width: 100%;
+}  
+
+.rowTableAccounts {
+    color:rgb(153,0,153);
+}
+
+.buttonLink {
+    display:inline-flex;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: rgb(200,46,49);
+}
+
+.titleTableAccounts{
+    color: rgb(102,0,51);
+}
+
+.titleModalEditAccount{
+    display: flex; 
+    justify-content:space-between; 
+    align-items: center; 
+    width:40%; margin: auto;
+}
+
+.inputEditCode{
+    width: 140px;
+}
+
+.rowTwo{
+    height: 280px;
+}
+
+.columnOne{
+    display: flex;
+    justify-content:space-between; 
+    margin: auto; 
+    align-items: center;
+    height: 45%; 
+    width: 80%;
+}
+
+.userNameAccount{
+    display: flex;
+    justify-content:space-between;
+    margin-bottom: 20px;
+}
+
+.passwordAccount{
+    display: flex;
+    justify-content:space-between;
+}
+
+.textareaAccount{
+    height: 100px; 
+    width: 240px;
+    resize: none;
+}
+
+.columnTwo{
+    display: flex;
+    justify-content:space-between; 
+    margin: auto; 
+    align-items: center;
+    height: 45%; 
+    width: 80%
+}
+
+.userNameAccount{
+    display: flex;
+    justify-content:space-between; 
+    margin-bottom: 20px;
+}
+
+.passwordAccount{
+    display: flex;
+    justify-content:space-between;
+}
+
+.buttonEditAccount{
+    margin-top: 10px;
+}

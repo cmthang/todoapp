@@ -9,7 +9,7 @@
     </head>
     <body>
         <div id="app">
-            <div class="content" style="height:80px;">
+            <div class="content">
                 <h2>My Dragon List</h2>
                 <h4>Length: {{code.length}}</h4>
             </div>
@@ -129,8 +129,8 @@
             </div>
 
             <div class="myAccounts" v-if="flagAccount()">
-                    <table style="width: 100%;">
-                        <tr style="color: rgb(102,0,51);">
+                    <table class="tableAccounts">
+                        <tr class="titleTableAccounts">
                             <td><h4>Index</h4></td>
                             <td><h4>Page</h4></td>
                             <td><h4>Link</h4></td>
@@ -150,11 +150,11 @@
                                 </a>
                             </td>
                         </tr>
-                        <tr v-for="(account,index) in accounts" style="color:rgb(153,0,153)">
+                        <tr class="rowTableAccounts" v-for="(account,index) in accounts">
                             <td>{{index+1}}</td>
                             <td>{{account.account_page}}</td>
                             <td>
-                                <a href="#" v-on:click.prevent="isRedirect(account.account_link)" class="buttonFix" style="display:inline-flex ;">
+                                <a href="#" v-on:click.prevent="isRedirect(account.account_link)" class="buttonLink">
                                     {{account.account_link}}
                                 </a>
                             </td>
@@ -196,36 +196,31 @@
             <div class="modalAccounts">
                 <div id="myModal" v-bind:class="{hideModal:isHide, showModal:isShow}">
 
-                    <div class="modal-content" style="height: 400px;background-color: rgb(51,0,25);
-                    color:rgb(255,255,51)">
+                    <div class="modal-content">
 
-                        <!-- Line One -->
-                        <div style="display: flex; justify-content:space-between; 
-                        align-items: center; width:40%; margin: auto;">
+                        <!-- Line One (Title) -->
+                        <div class="titleModalEditAccount">
                             <div>
                                 <h2>Edit Account</h2>
                             </div>
                             <div>
                                 <label>Code:</label>
-                                <input v-model="editCode" style="width: 140px;"/>
+                                <input class="inputEditCode" v-model="editCode"/>
                             </div>
                         </div>
                     
                         <!-- Line Two -->
-                        <div class="rowTwo" style="height: 280px;">
-                            <div class="columnOne" style="display: flex;
-                             justify-content:space-between; margin: auto; align-items: center;
-                             height: 45%; width: 80%;">
+                        <div class="rowTwo">
+                            <div class="columnOne">
                                 <div>    
-                                    <div class="userNameAccount" style="display: flex;justify-content:space-between;
-                                    margin-bottom: 20px;">
+                                    <div class="userNameAccount">
                                         <label>
                                             Page Name: 
                                         </label>
                                         <input v-model="pageName"/>
                                     </div>
 
-                                    <div class="passwordAccount" style="display: flex;justify-content:space-between;">
+                                    <div class="passwordAccount">
                                         <label>
                                             Link:
                                         </label>
@@ -238,25 +233,21 @@
                                 </div>
 
                                 <div>
-                                    <textarea v-model="info" style="height: 100px; width: 240px;
-                                    resize:none;">
+                                    <textarea class="textareaAccount" v-model="info">
                                     </textarea>
                                 </div>
                             </div>
 
-                            <div class="columnTwo" style="display: flex;
-                             justify-content:space-between; margin: auto; align-items: center;
-                             height: 45%; width: 80%">
+                            <div class="columnTwo">
                                 <div>    
-                                    <div class="userNameAccount" style="display: flex;
-                                    justify-content:space-between; margin-bottom: 20px;">
+                                    <div class="userNameAccount">
                                         <label>
                                             User Name: 
                                         </label>
                                         <input v-model="userName"/>
                                     </div>
 
-                                    <div class="passwordAccount" style="display: flex;justify-content:space-between;">
+                                    <div class="passwordAccount">
                                         <label>
                                             Password:
                                         </label>
@@ -269,8 +260,7 @@
                                 </div>
 
                                 <div>
-                                    <textarea style="height: 100px; width: 240px;
-                                    resize: none;" v-model="note">
+                                    <textarea class="textareaAccount" v-model="note">
                                     </textarea>
                                 </div>
                             </div>
@@ -278,7 +268,7 @@
                         </div>
 
                         <!-- Line Button -->
-                        <div style="margin-top: 10px;">
+                        <div class="buttonEditAccount">
                             <button v-on:click="editData()">
                                 Update
                             </button>
