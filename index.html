@@ -192,11 +192,16 @@
                     </table>
             </div>
 
+            <!-- Modal Edit Account -->
             <div class="modalAccounts">
                 <div id="myModal" v-bind:class="{hideModal:isHide, showModal:isShow}">
-                    <div class="modal-content">
-                        
-                        <div style="display: flex; justify-content:space-between; align-items: center; width:50%; margin: auto;">
+
+                    <div class="modal-content" style="height: 400px;background-color: rgb(51,0,25);
+                    color:rgb(255,255,51)">
+
+                        <!-- Line One -->
+                        <div style="display: flex; justify-content:space-between; 
+                        align-items: center; width:40%; margin: auto;">
                             <div>
                                 <h2>Edit Account</h2>
                             </div>
@@ -206,50 +211,74 @@
                             </div>
                         </div>
                     
-                        <div style="display:flex; margin: auto; justify-content: space-between;
-                         align-items: center;">
-                            <div>
-                                <div style="width: 45%;">
-                                    <div class="" style="display: flex;">
-                                        <label>PageName:</label>
+                        <!-- Line Two -->
+                        <div class="rowTwo" style="height: 280px;">
+                            <div class="columnOne" style="display: flex;
+                             justify-content:space-between; margin: auto; align-items: center;
+                             height: 45%; width: 80%;">
+                                <div>    
+                                    <div class="userNameAccount" style="display: flex;justify-content:space-between;
+                                    margin-bottom: 20px;">
+                                        <label>
+                                            Page Name: 
+                                        </label>
                                         <input v-model="pageName"/>
                                     </div>
 
-                                    <div class="" style="display: flex;">
-                                        <label>Link:</label>
+                                    <div class="passwordAccount" style="display: flex;justify-content:space-between;">
+                                        <label>
+                                            Link:
+                                        </label>
                                         <input v-model="link"/>
                                     </div>
                                 </div>
 
-                                <div style=" width: 45%;">
-                                    <div style="display: flex;">
-                                        <label>UserName:</label>
+                                <div class="labelInfo">
+                                    <label>Info: </label>
+                                </div>
+
+                                <div>
+                                    <textarea v-model="info" style="height: 100px; width: 240px;
+                                    resize:none;">
+                                    </textarea>
+                                </div>
+                            </div>
+
+                            <div class="columnTwo" style="display: flex;
+                             justify-content:space-between; margin: auto; align-items: center;
+                             height: 45%; width: 80%">
+                                <div>    
+                                    <div class="userNameAccount" style="display: flex;
+                                    justify-content:space-between; margin-bottom: 20px;">
+                                        <label>
+                                            User Name: 
+                                        </label>
                                         <input v-model="userName"/>
                                     </div>
-                                    <div style="display: flex;">
-                                        <label>Password:</label>
+
+                                    <div class="passwordAccount" style="display: flex;justify-content:space-between;">
+                                        <label>
+                                            Password:
+                                        </label>
                                         <input v-model="password"/>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <div style="width: 55%;">
-                                <div class="" style="">
-                                    <label>Info:</label>
-                                    <textarea v-model="info">
-                                        Info
-                                    </textarea>
+
+                                <div class="labelInfo">
+                                    <label>Note: </label>
                                 </div>
 
-                                <div class="" style="">
-                                    <label>Note:</label>
-                                    <textarea v-model="note">
-                                        Note
+                                <div>
+                                    <textarea style="height: 100px; width: 240px;
+                                    resize: none;" v-model="note">
                                     </textarea>
                                 </div>
                             </div>
+
                         </div>
-                        <div>
+
+                        <!-- Line Button -->
+                        <div style="margin-top: 10px;">
                             <button v-on:click="editData()">
                                 Update
                             </button>

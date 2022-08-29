@@ -202,7 +202,7 @@ Vue.createApp ({
                     'account_name' : "this.userName",
                     'account_password' : "this.password",
                     'account_link' : "http://www.nettruyenme.com/",
-                    'account_info' : "Hegemony No. 1. Unstoppable. The road does not return. No explanation",
+                    'account_info' : "1.Hegemony No. 1. Unstoppable"+"2.The road does not return."+"3.No explanation",
                     'account_note' : "Big Waves",
                     'code': this.code,  
                 }
