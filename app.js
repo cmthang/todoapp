@@ -28,6 +28,8 @@ Vue.createApp ({
             editCode: "",
 
             tables:"",
+            hiddenCode: true,
+            hiddenTables: true,
         };
     },
 
@@ -145,6 +147,7 @@ Vue.createApp ({
                                 Math.floor( Math.random() * characters.length )
                             );
                         }
+                        this.length = "20";
                     }
                 }
                 else 
@@ -175,7 +178,7 @@ Vue.createApp ({
             const options = {
                 method: 'GET',
                 // url: 'https://apichallengermydragon.000webhostapp.com/api/account',
-                url: 'http://localhost:8000/api/'+this.tables,
+                url: 'http://localhost:8000/api/'+this.tables.trim(),
             }
 
             try {
@@ -328,6 +331,11 @@ Vue.createApp ({
         closeModal(){
             this.isHide = true;
             this.isShow = false;
+        },
+
+        isClear(){
+            this.tables = "";
+            this.code = "";
         }
     },
     
