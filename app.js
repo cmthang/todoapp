@@ -26,6 +26,8 @@ Vue.createApp ({
             info: "",
             note: "",
             editCode: "",
+
+            url:"",
         };
     },
 
@@ -169,11 +171,11 @@ Vue.createApp ({
         },
 
         getData(){
-
+          
             const options = {
                 method: 'GET',
                 // url: 'https://apichallengermydragon.000webhostapp.com/api/account',
-                url: 'http://localhost:8000/api/account',
+                url: 'http://localhost:8000/api/'+this.url,
             }
 
             try {

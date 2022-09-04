@@ -9,23 +9,33 @@
     </head>
     <body>
         <div id="app">
-            <div class="content">
+            <div class="content" style="height: auto;">
                 <h2>My Dragon List</h2>
                 <h4>Length: {{code.length}}</h4>
             </div>
 
-            <div class="fullCode">
-                <div class="code">
+            <div class="fullCode" style="height: auto; padding-top: 20px ;">
+                <div class="code" style="">
                     <button v-on:click="isClean()">
                         Clean
                     </button>
-                    <input type="password" class="inputOne" v-model="code"/>
+                    
                     <button v-on:click="isTakes()">
                         Takes
                     </button>
+
+                    <div style="display: flex; justify-content:center; padding-top: 5px;">
+                        <div style="padding-right:10px;">
+                            <label>Tables:</label>
+                            <input type="text" class="" v-model="url" style="width: 70px;"/>
+                        </div>
+                        <label>Code:</label>
+                        <input type="password" class="inputOne" v-model="code"/>
+
+                    </div>
                 </div>
         
-                <div class="generatePassword">
+                <div class="generatePassword" style="padding-top: 30px;">
                     <div class="linePassword">
                         <a href="#" v-on:click.prevent="generatePassword()" class="buttonPassword">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-seam-fill" viewBox="0 0 16 16">
