@@ -27,7 +27,7 @@ Vue.createApp ({
             note: "",
             editCode: "",
 
-            url:"",
+            tables:"",
         };
     },
 
@@ -175,7 +175,7 @@ Vue.createApp ({
             const options = {
                 method: 'GET',
                 // url: 'https://apichallengermydragon.000webhostapp.com/api/account',
-                url: 'http://localhost:8000/api/'+this.url,
+                url: 'http://localhost:8000/api/'+this.tables,
             }
 
             try {
