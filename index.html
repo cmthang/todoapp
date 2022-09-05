@@ -1,86 +1,122 @@
 <!DOCTYPE html>
 <html lang="vi">
     <head>
-        <link rel="stylesheet" href="app.css">
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>NoteText</title>
+        <link rel="stylesheet" href="app.css">
         <link rel="shortcut icon" href="/src/1.jpg">
     </head>
     <body>
         <div id="app">
-            <div class="content">
+            <div class="content" style="height: auto;">
                 <h2>My Dragon List</h2>
+                <h4>Length: {{code.length}}</h4>
             </div>
-      
-            <div class="generatePassword">
-                <div class="linePassword">
-                    <a href="#" v-on:click.prevent="generatePassword()" class="buttonPassword">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-seam-fill" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M15.528 2.973a.75.75 0 0 1 .472.696v8.662a.75.75 0 0 1-.472.696l-7.25 2.9a.75.75 0 0 1-.557 0l-7.25-2.9A.75.75 0 0 1 0 12.331V3.669a.75.75 0 0 1 .471-.696L7.443.184l.01-.003.268-.108a.75.75 0 0 1 .558 0l.269.108.01.003 6.97 2.789ZM10.404 2 4.25 4.461 1.846 3.5 1 3.839v.4l6.5 2.6v7.922l.5.2.5-.2V6.84l6.5-2.6v-.4l-.846-.339L8 5.961 5.596 5l6.154-2.461L10.404 2Z"/>
-                        </svg>
-                        Password
-                        </a>
-                </div>
 
-                <div class="linePicked">
-                    Picked: {{ picked }} {{ length }}
+            <div class="fullCode" style="height: auto; padding-top: 20px ;">
+                <div class="code" style="">
+                    <button v-on:click="isClean()">
+                        Clean
+                    </button>
+                    
+                    <button v-on:click="isTakes()">
+                        Takes
+                    </button>
+
+                    <button v-on:click="isClear()">
+                        Clear
+                    </button>
+
+
+                    <div style="display: flex; justify-content:center; padding-top: 5px;">
+                        <div style="padding-right:10px;">
+                            <label>Tables:</label>
+                            <input v-if="hiddenTables == false" type="text" class="" v-model="tables" style="width: 70px;"/>
+                            <input v-if="hiddenTables == true" type="password" class="" v-model="tables" style="width: 70px;"/>
+
+                            <label style="padding-left: 5px;">Hidden</label>
+                            <input type="checkbox" v-model="hiddenTables" checked/>    
+    
+                        </div>
+                        <label>Code:</label>
+                        <input v-if="hiddenCode == true" type="password" class="inputOne" v-model="code"/>
+                        <input v-if="hiddenCode == false" type="text" class="inputOne" v-model="code"/>
+
+                        <label style="padding-left: 5px;">Hidden</label>
+                        <input type="checkbox" v-model="hiddenCode" checked/>    
+                    </div>
                 </div>
         
-                <div class="setting" >
-                    <div > 
-                        <label for="length">
-                            Length:
-                        </label>
-                        <input type="number" class="inputLength" v-model="length" id="length" value=20 min="1" max="47"/>
+                <div class="generatePassword" style="padding-top: 30px;">
+                    <div class="linePassword">
+                        <a href="#" v-on:click.prevent="generatePassword()" class="buttonPassword">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-seam-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M15.528 2.973a.75.75 0 0 1 .472.696v8.662a.75.75 0 0 1-.472.696l-7.25 2.9a.75.75 0 0 1-.557 0l-7.25-2.9A.75.75 0 0 1 0 12.331V3.669a.75.75 0 0 1 .471-.696L7.443.184l.01-.003.268-.108a.75.75 0 0 1 .558 0l.269.108.01.003 6.97 2.789ZM10.404 2 4.25 4.461 1.846 3.5 1 3.839v.4l6.5 2.6v7.922l.5.2.5-.2V6.84l6.5-2.6v-.4l-.846-.339L8 5.961 5.596 5l6.154-2.461L10.404 2Z"/>
+                            </svg>
+                            Password
+                            </a>
                     </div>
-                        
-                    <div class="checkBox">
-                        <input type="checkbox" id="alpha" value="alpha" v-model="picked" checked/>
-                        <label for="length">
-                            alpha
-                        </label>
+
+                    <div class="linePicked">
+                        Picked: {{ picked }} {{ length }}
                     </div>
-                        
-                    <div class="checkBox" >
-                        <input type="checkbox" class="" id="capitalAlpha" value="capitalAlpha" v-model="picked" checked/>                        
-                        <label for="length">
-                            Alpha
-                        </label>
+            
+                    <div class="setting" >
+                        <div > 
+                            <label for="length">
+                                Length:
+                            </label>
+                            <input type="number" class="inputLength" v-model="length" id="length" min="1" max="47"/>
+                        </div>
+                            
+                        <div class="checkBox">
+                            <input type="checkbox" id="alpha" value="alpha" v-model="picked" checked/>
+                            <label for="length">
+                                alpha
+                            </label>
+                        </div>
+                            
+                        <div class="checkBox" >
+                            <input type="checkbox" class="" id="capitalAlpha" value="capitalAlpha" v-model="picked" checked/>                        
+                            <label for="length">
+                                Alpha
+                            </label>
+                        </div>
+                            
+                        <div class="checkBox" >
+                            <input type="checkbox" class="" id="numbers" value="Numbers" v-model="picked" checked/>
+                            <label for="length">
+                                Numbers
+                            </label>                   
+                        </div>
+                            
+                        <div class="checkBox" >
+                            <input type="checkbox" class="" id="symbols" value="Symbols" v-model="picked" checked/>
+                            <label for="length">
+                                Symbols
+                            </label>
+                        </div>
                     </div>
-                        
-                    <div class="checkBox" >
-                        <input type="checkbox" class="" id="numbers" value="Numbers" v-model="picked" checked/>
-                        <label for="length">
-                            Numbers
-                        </label>                   
-                    </div>
-                        
-                    <div class="checkBox" >
-                        <input type="checkbox" class="" id="symbols" value="Symbols" v-model="picked" checked/>
-                        <label for="length">
-                            Symbols
-                        </label>
-                    </div>
+                </div>
+                
+                <div class="input" >
+                    <button v-on:click="clearInput()" class="buttonAddClear">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-balloon" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 9.984C10.403 9.506 12 7.48 12 5a4 4 0 0 0-8 0c0 2.48 1.597 4.506 4 4.984ZM13 5c0 2.837-1.789 5.227-4.52 5.901l.244.487a.25.25 0 1 1-.448.224l-.008-.017c.008.11.02.202.037.29.054.27.161.488.419 1.003.288.578.235 1.15.076 1.629-.157.469-.422.867-.588 1.115l-.004.007a.25.25 0 1 1-.416-.278c.168-.252.4-.6.533-1.003.133-.396.163-.824-.049-1.246l-.013-.028c-.24-.48-.38-.758-.448-1.102a3.177 3.177 0 0 1-.052-.45l-.04.08a.25.25 0 1 1-.447-.224l.244-.487C4.789 10.227 3 7.837 3 5a5 5 0 0 1 10 0Zm-6.938-.495a2.003 2.003 0 0 1 1.443-1.443C7.773 2.994 8 2.776 8 2.5c0-.276-.226-.504-.498-.459a3.003 3.003 0 0 0-2.46 2.461c-.046.272.182.498.458.498s.494-.227.562-.495Z"/>
+                        </svg>
+                        <label class="textButton">Empty</label>
+                    </button>
+                    <input type="text" v-model="task" class="inputBar" placeholder="Input Texts"/>
+                    <button v-on:click="addTask()" class="buttonAddClear">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-through-heart-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2.854 15.854A.5.5 0 0 1 2 15.5V14H.5a.5.5 0 0 1-.354-.854l1.5-1.5A.5.5 0 0 1 2 11.5h1.793l3.103-3.104a.5.5 0 1 1 .708.708L4.5 12.207V14a.5.5 0 0 1-.146.354l-1.5 1.5ZM16 3.5a.5.5 0 0 1-.854.354L14 2.707l-1.006 1.006c.236.248.44.531.6.845.562 1.096.585 2.517-.213 4.092-.793 1.563-2.395 3.288-5.105 5.08L8 13.912l-.276-.182A23.825 23.825 0 0 1 5.8 12.323L8.31 9.81a1.5 1.5 0 0 0-2.122-2.122L3.657 10.22a8.827 8.827 0 0 1-1.039-1.57c-.798-1.576-.775-2.997-.213-4.093C3.426 2.565 6.18 1.809 8 3.233c1.25-.98 2.944-.928 4.212-.152L13.292 2 12.147.854A.5.5 0 0 1 12.5 0h3a.5.5 0 0 1 .5.5v3Z"/>
+                        </svg>                    
+                        <label class="textButton">Adder</label>
+                    </button>
                 </div>
             </div>
             
-            <div class="input" >
-                <button v-on:click="clearInput()" class="buttonAddClear">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-balloon" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M8 9.984C10.403 9.506 12 7.48 12 5a4 4 0 0 0-8 0c0 2.48 1.597 4.506 4 4.984ZM13 5c0 2.837-1.789 5.227-4.52 5.901l.244.487a.25.25 0 1 1-.448.224l-.008-.017c.008.11.02.202.037.29.054.27.161.488.419 1.003.288.578.235 1.15.076 1.629-.157.469-.422.867-.588 1.115l-.004.007a.25.25 0 1 1-.416-.278c.168-.252.4-.6.533-1.003.133-.396.163-.824-.049-1.246l-.013-.028c-.24-.48-.38-.758-.448-1.102a3.177 3.177 0 0 1-.052-.45l-.04.08a.25.25 0 1 1-.447-.224l.244-.487C4.789 10.227 3 7.837 3 5a5 5 0 0 1 10 0Zm-6.938-.495a2.003 2.003 0 0 1 1.443-1.443C7.773 2.994 8 2.776 8 2.5c0-.276-.226-.504-.498-.459a3.003 3.003 0 0 0-2.46 2.461c-.046.272.182.498.458.498s.494-.227.562-.495Z"/>
-                    </svg>
-                    <label class="textButton">Empty</label>
-                </button>
-                <input type="text" v-model="task" class="inputBar" placeholder="Input Texts"/>
-                <button v-on:click="addTask()" class="buttonAddClear">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-through-heart-fill" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M2.854 15.854A.5.5 0 0 1 2 15.5V14H.5a.5.5 0 0 1-.354-.854l1.5-1.5A.5.5 0 0 1 2 11.5h1.793l3.103-3.104a.5.5 0 1 1 .708.708L4.5 12.207V14a.5.5 0 0 1-.146.354l-1.5 1.5ZM16 3.5a.5.5 0 0 1-.854.354L14 2.707l-1.006 1.006c.236.248.44.531.6.845.562 1.096.585 2.517-.213 4.092-.793 1.563-2.395 3.288-5.105 5.08L8 13.912l-.276-.182A23.825 23.825 0 0 1 5.8 12.323L8.31 9.81a1.5 1.5 0 0 0-2.122-2.122L3.657 10.22a8.827 8.827 0 0 1-1.039-1.57c-.798-1.576-.775-2.997-.213-4.093C3.426 2.565 6.18 1.809 8 3.233c1.25-.98 2.944-.928 4.212-.152L13.292 2 12.147.854A.5.5 0 0 1 12.5 0h3a.5.5 0 0 1 .5.5v3Z"/>
-                      </svg>                    
-                      <label class="textButton">Adder</label>
-                </button>
-            </div>
-      
             <div class="list">
                 <p v-show="!tasks.length"> No task </p>
                 <ul>
@@ -88,7 +124,7 @@
                         <div class="index">
                             <h4 class="lineIndex">{{index+1}}</h4>
                             <h4 class="itemList">
-                                {{ task.name }}
+                                {{ task.name }}  
                                 <a href="#" v-on:click.prevent="fixTask(index)" class="buttonFix">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-airplane-engines-fill" viewBox="0 0 16 16">
                                         <path d="M8 0c-.787 0-1.292.592-1.572 1.151A4.347 4.347 0 0 0 6 3v3.691l-2 1V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.191l-1.17.585A1.5 1.5 0 0 0 0 10.618V12a.5.5 0 0 0 .582.493l1.631-.272.313.937a.5.5 0 0 0 .948 0l.405-1.214 2.21-.369.375 2.253-1.318 1.318A.5.5 0 0 0 5.5 16h5a.5.5 0 0 0 .354-.854l-1.318-1.318.375-2.253 2.21.369.405 1.214a.5.5 0 0 0 .948 0l.313-.937 1.63.272A.5.5 0 0 0 16 12v-1.382a1.5 1.5 0 0 0-.83-1.342L14 8.691V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v.191l-2-1V3c0-.568-.14-1.271-.428-1.849C9.292.591 8.787 0 8 0Z"/>
@@ -103,7 +139,7 @@
                                     </svg>
                                     Done
                                 </a>
-                                <a href="#" v-on:click.prevent="copy(task)" class="buttonCopy">
+                                <a href="#" v-on:click.prevent="copy(task.name)" class="buttonCopy">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16">
                                         <path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/>
                                     </svg>
@@ -114,10 +150,164 @@
                     </li>
                 </ul>
             </div>
-        </div>  
 
+            <div class="myAccounts" v-if="flagAccount()">
+                    <table class="tableAccounts">
+                        <tr class="titleTableAccounts">
+                            <td><h4>Index</h4></td>
+                            <td><h4>Page</h4></td>
+                            <td><h4>Link</h4></td>
+                            <td><h4>UserName</h4></td>
+                            <td><h4>Password</h4></td>
+                            <td><h4>Info</h4></td>
+                            <td><h4>Note</h4></td>
+                            <td>
+                                <h4>Button</h4>
+                                <a href="#" v-on:click.prevent="addData()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-browser-edge" viewBox="0 0 16 16">
+                                    <path d="M9.482 9.341c-.069.062-.17.153-.17.309 0 .162.107.325.3.456.877.613 2.521.54 2.592.538h.002c.667 0 1.32-.18 1.894-.519A3.838 3.838 0 0 0 16 6.819c.018-1.316-.44-2.218-.666-2.664l-.04-.08C13.963 1.487 11.106 0 8 0A8 8 0 0 0 .473 5.29C1.488 4.048 3.183 3.262 5 3.262c2.83 0 5.01 1.885 5.01 4.797h-.004v.002c0 .338-.168.832-.487 1.244l.006-.006a.594.594 0 0 1-.043.041Z"/>
+                                    <path d="M.01 7.753a8.137 8.137 0 0 0 .753 3.641 8 8 0 0 0 6.495 4.564 5.21 5.21 0 0 1-.785-.377h-.01l-.12-.075a5.45 5.45 0 0 1-1.56-1.463A5.543 5.543 0 0 1 6.81 5.8l.01-.004.025-.012c.208-.098.62-.292 1.167-.285.129.001.257.012.384.033a4.037 4.037 0 0 0-.993-.698l-.01-.005C6.348 4.282 5.199 4.263 5 4.263c-2.44 0-4.824 1.634-4.99 3.49Zm10.263 7.912c.088-.027.177-.054.265-.084-.102.032-.204.06-.307.086l.042-.002Z"/>
+                                    <path d="M10.228 15.667a5.21 5.21 0 0 0 .303-.086l.082-.025a8.019 8.019 0 0 0 4.162-3.3.25.25 0 0 0-.331-.35c-.215.112-.436.21-.663.294a6.367 6.367 0 0 1-2.243.4c-2.957 0-5.532-2.031-5.532-4.644.002-.135.017-.268.046-.399a4.543 4.543 0 0 0-.46 5.898l.003.005c.315.441.707.821 1.158 1.121h.003l.144.09c.877.55 1.721 1.078 3.328.996Z"/>
+                                    </svg>
+                                    Ad
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="rowTableAccounts" v-for="(account,index) in accounts">
+                            <td>{{index+1}}</td>
+                            <td>{{account.account_page}}</td>
+                            <td>
+                                <a href="#" v-on:click.prevent="isRedirect(account.account_link)" class="buttonLink">
+                                    {{account.account_link}}
+                                </a>
+                            </td>
+                            <td>
+                                <h4>{{account.account_name}}</h4>
+                                <a href="#" v-on:click.prevent="copy(account.account_name)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-android" viewBox="0 0 16 16">
+                                        <path d="M2.76 3.061a.5.5 0 0 1 .679.2l1.283 2.352A8.94 8.94 0 0 1 8 5a8.94 8.94 0 0 1 3.278.613l1.283-2.352a.5.5 0 1 1 .878.478l-1.252 2.295C14.475 7.266 16 9.477 16 12H0c0-2.523 1.525-4.734 3.813-5.966L2.56 3.74a.5.5 0 0 1 .2-.678ZM5 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm6 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/>
+                                    </svg>
+                                    Get
+                                </a>
+                            </td>
+                            <td>
+                                <h4>{{account.account_password}}</h4>
+                                <a href="#" v-on:click.prevent="copy(account.account_password)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-android" viewBox="0 0 16 16">
+                                        <path d="M2.76 3.061a.5.5 0 0 1 .679.2l1.283 2.352A8.94 8.94 0 0 1 8 5a8.94 8.94 0 0 1 3.278.613l1.283-2.352a.5.5 0 1 1 .878.478l-1.252 2.295C14.475 7.266 16 9.477 16 12H0c0-2.523 1.525-4.734 3.813-5.966L2.56 3.74a.5.5 0 0 1 .2-.678ZM5 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm6 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/>
+                                    </svg>
+                                    Get
+                                </a>
+                            </td>
+                            <td>{{account.account_info}}</td>
+                            <td>{{account.account_note}}</td>
+                            <td>
+                                <h4>
+                                    <a href="#" v-on:click.prevent="openModal(account)">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-car-front-fill" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679c.033.161.049.325.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.807.807 0 0 0 .381-.404l.792-1.848ZM3 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2H6ZM2.906 5.189l.956-1.913A.5.5 0 0 1 4.309 3h7.382a.5.5 0 0 1 .447.276l.956 1.913a.51.51 0 0 1-.497.731c-.91-.073-3.35-.17-4.597-.17-1.247 0-3.688.097-4.597.17a.51.51 0 0 1-.497-.731Z"/>
+                                        </svg>
+                                        Ed
+                                    </a>
+                                </h4>
+                            </td>
+                        </tr>        
+                    </table>
+            </div>
+
+            <!-- Modal Edit Account -->
+            <div class="modalAccounts">
+                <div id="myModal" v-bind:class="{hideModal:isHide, showModal:isShow}">
+
+                    <div class="modal-content">
+
+                        <!-- Line One (Title) -->
+                        <div class="titleModalEditAccount">
+                            <div>
+                                <h2>Edit Account</h2>
+                            </div>
+                            <div>
+                                <label>Code:</label>
+                                <input class="inputEditCode" v-model="editCode"/>
+                            </div>
+                        </div>
+                    
+                        <!-- Line Two -->
+                        <div class="rowTwo">
+                            <div class="columnOne">
+                                <div>    
+                                    <div class="userNameAccount">
+                                        <label>
+                                            Page Name: 
+                                        </label>
+                                        <input v-model="pageName"/>
+                                    </div>
+
+                                    <div class="passwordAccount">
+                                        <label>
+                                            Link:
+                                        </label>
+                                        <input v-model="link"/>
+                                    </div>
+                                </div>
+
+                                <div class="labelInfo">
+                                    <label>Info: </label>
+                                </div>
+
+                                <div>
+                                    <textarea class="textareaAccount" v-model="info">
+                                    </textarea>
+                                </div>
+                            </div>
+
+                            <div class="columnTwo">
+                                <div>    
+                                    <div class="userNameAccount">
+                                        <label>
+                                            User Name: 
+                                        </label>
+                                        <input v-model="userName"/>
+                                    </div>
+
+                                    <div class="passwordAccount">
+                                        <label>
+                                            Password:
+                                        </label>
+                                        <input v-model="password"/>
+                                    </div>
+                                </div>
+
+                                <div class="labelInfo">
+                                    <label>Note: </label>
+                                </div>
+
+                                <div>
+                                    <textarea class="textareaAccount" v-model="note">
+                                    </textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Line Button -->
+                        <div class="buttonEditAccount">
+                            <button v-on:click="editData()">
+                                Update
+                            </button>
+
+                            <button v-on:click="closeModal()">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>          
 
         <script src="https://unpkg.com/vue@next"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="app.js"></script>
     </body>
 </html>
