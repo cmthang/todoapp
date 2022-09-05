@@ -8,7 +8,7 @@ Vue.createApp ({
             length: 20,
             picked: ["alpha", "capitalAlpha", "Numbers", "Symbols"],
 
-            code: "AddingCode",
+            code: "",
             codeLength: 7, 
 
             fullData: [],
@@ -177,8 +177,8 @@ Vue.createApp ({
           
             const options = {
                 method: 'GET',
-                // url: 'https://apichallengermydragon.000webhostapp.com/api/account',
-                url: 'http://localhost:8000/api/'+this.tables.trim(),
+                url: 'https://apichallengermydragon.000webhostapp.com/api/'+this.tables.trim(),
+                // url: 'http://localhost:8000/api/'+this.tables.trim(),
             }
 
             try {
@@ -198,23 +198,25 @@ Vue.createApp ({
         addData(){
             const options = {
                 method: 'POST',
-                // url: 'https://apichallengermydragon.000webhostapp.com/api/account',
-                url: 'http://localhost:8000/api/account/',
+                url: 'https://apichallengermydragon.000webhostapp.com/api/'+this.tables.trim(),
+                // url: 'http://localhost:8000/api/'+this.tables.trim(),
 
                 data: {
-                    'account_page' : "this.pageName",
-                    'account_name' : "this.userName",
-                    'account_password' : "lB3xD5!xa5*nmW7ZG#s1",
-                    'account_link' : "https://bigger2407.blogspot.com/",
-                    'account_info' : "1.Hegemony No. 1. Unstoppable"+"2.The road does not return."+"3.No explanation",
-                    'account_note' : "Big Waves",
-                    'code': this.code,  
+                    "account_page" : "this.pageName",
+                    "account_name" : "this.userName",
+                    "account_password" : "lB3xD5!xa5*nmW7ZG#s1",
+                    "account_note" : "Big Waves",
+                    "account_link" : "https://bigger2407.blogspot.com/",
+                    "account_info" : "1.Hegemony No. 1. Unstoppable"+"2.The road does not return."+"3.No explanation",
+                    "code": this.code,  
                 }
             }
             try {
-                axios.request(options).then(() =>
+                
+                axios.request(options).then((response) =>
                 {
-                    this.getData();
+                    console.log(response);
+                    // this.getData();
                 })
             }
             catch(err){
@@ -228,7 +230,7 @@ Vue.createApp ({
         editData(){
             const options = {
                 method: 'PUT',
-                // url: 'https://apichallengermydragon.000webhostapp.com/api/account',
+                // url: 'https://apichallengermydragon.000webhostapp.com/api/account/'+this.id,
                 url: 'http://localhost:8000/api/account/'+this.id,
 
                 data: {
