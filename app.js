@@ -1,5 +1,5 @@
-Vue.createApp ({
 
+Vue.createApp ({
     data() {
         return {
             tasks: [],
@@ -327,7 +327,6 @@ Vue.createApp ({
             this.info = "Hegemony No. 1. Unstoppable. The road does not return. No explanation",
             this.note = "Big Waves",
             this.editCode = "AddingCode"
-
         },
 
         closeModal(){
