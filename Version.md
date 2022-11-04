@@ -16,8 +16,13 @@ Version 5:
     Date: Thursday, August 18th 2022.
     Note: Add checkbox setting generate password (alpha, Alpha, Numbers, Symbols).
 
-Version 6: 
+Version 6: (Deleted)
 
     Date: Monday, August 29th 2022.
-    Note: Full Api Accounts.
+    Note: Full Api Accounts. 
     
+Version 7: (Simple Page)
+
+    Date: Friday, November 04th 2022.
+    Note: Website Minimalist. Add picker color. 
+   
