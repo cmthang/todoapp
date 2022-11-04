@@ -1,4 +1,3 @@
-
 Vue.createApp ({
     data() {
         return {
@@ -12,7 +11,7 @@ Vue.createApp ({
             codeLength: 7, 
 
             // Setting Pagination
-            limit: 4,
+            limit: 7,
             dataDisplay: [], // Display Records
             dataPage: [],
             currentPage: 1,
@@ -22,6 +21,7 @@ Vue.createApp ({
 
     created() {
         this.getTasks();
+        this.chooseColorBackGround();
     },
 
     methods: {
@@ -177,7 +177,7 @@ Vue.createApp ({
             }        
 
         },
-        
+
         paginationData(dataPage){
             try {
                 this.dataPage = dataPage;
@@ -227,6 +227,10 @@ Vue.createApp ({
 
         lastPage(){
             this.displayPaginationPage(this.totalPages);
+        },
+
+        chooseColorBackGround(){
+            document.getElementById('html').style.backgroundColor = 'aquamarine';
         }
     },
     
