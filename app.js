@@ -219,6 +219,9 @@ Vue.createApp ({
 
         displayPaginationPage(numberPage){
             try {
+                if (numberPage > this.totalPages){
+                    numberPage = 1;
+                }
                 this.currentPage = numberPage;
                 this.pageActive = numberPage;
                 var numberRowPage = Number(this.limit); //Because input text
