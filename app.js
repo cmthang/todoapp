@@ -35,6 +35,9 @@ Vue.createApp ({
     computed: {
     },
 
+    mounted(){
+    },
+
     methods: {
         index(){
             this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];   
