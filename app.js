@@ -10,7 +10,6 @@ Vue.createApp ({
             code: "",
             codeLength: 7, 
 
-            tables:"",
             hiddenCode: true,
 
             // Setting Pagination
