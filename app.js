@@ -4,6 +4,9 @@ Vue.createApp ({
             tasks: [],
             task: "",
 
+            deleteTasks: [],
+            diary: [],
+
             length: 20,
             picked: ["alpha", "capitalAlpha", "Numbers", "Symbols"],
 
@@ -35,9 +38,15 @@ Vue.createApp ({
     computed: {
     },
 
+    mounted(){
+        this.$refs.task.focus();
+    },
+
     methods: {
         index(){
             this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];   
+            this.diary = JSON.parse(localStorage.getItem("diary")) || [];   
+
             if (this.tasks.length > 0){
                 this.paginationData(this.tasks);
                 this.displayPaginationPage(this.currentPage);    
@@ -68,12 +77,40 @@ Vue.createApp ({
         },
 
         removeTask(task) {
+            this.deleteTasks.push(task);
+
+            var flagCheck = 0;
+            this.diary.forEach(element => {
+                if (element.id == task.id){
+                    flagCheck++;
+                }
+            });
+            if (flagCheck == 0){
+                this.diary.push(task);
+                localStorage.setItem("diary", JSON.stringify(this.diary));    
+            }
+
             let newTasks = this.tasks.filter(function (item){
                 return task.id !== item.id;
             });
             this.tasks = newTasks;
             localStorage.setItem("tasks", JSON.stringify(this.tasks));
             this.index();
+        },
+
+        restoreTask(){
+            if(this.deleteTasks.length > 0){
+                console.log(this.deleteTasks[this.deleteTasks.length-1]);
+                this.tasks.push(this.deleteTasks[this.deleteTasks.length-1]);
+                var tempt = [];
+                for ( var i = 0; i < this.deleteTasks.length-2; i++ ){
+                    tempt.push(this.deleteTasks[i]);
+                }
+                this.deleteTasks = tempt; 
+
+                localStorage.setItem("tasks", JSON.stringify(this.tasks));
+                this.index();
+            }
         },
 
         fixTask(index) {
@@ -209,6 +246,9 @@ Vue.createApp ({
 
         displayPaginationPage(numberPage){
             try {
+                if (numberPage > this.totalPages){
+                    numberPage = 1;
+                }
                 this.currentPage = numberPage;
                 this.pageActive = numberPage;
                 var numberRowPage = Number(this.limit); //Because input text
@@ -267,6 +307,8 @@ Vue.createApp ({
             }
             localStorage.setItem("backgroundColor", JSON.stringify(pickColor));
         },
+
+
 
     },
     

@@ -30,3 +30,12 @@ Version 8:
 
     Date: Wednesday, November 09th 2022.
     Note: Pagination page. Picker color.
+
+Version 9:
+
+    Date: Wednesday, November 09th 2022.
+    Note: Combo key. Focus input.
+    Note Key: (Ctrl+Insert) -> Restore Task
+              (Ctrl+Delete) -> Clear Input
+              (Ctrl+Home) -> Generate Password
+              (Ctrl+End) -> Next Page.
