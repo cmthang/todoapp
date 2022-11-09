@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" id="html">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,8 +8,20 @@
         <link rel="shortcut icon" href="src/1.jpg">
     </head>
     <body>
-        <div id="app">
+        <div id="app" style="width: 100%;padding: 0; margin: 0;">
             <div class="content" style="height: auto;">
+                <div style="text-align: end; color:black">
+                    Picker Color 
+                    <select v-model="pickColor" @change="chooseColorBackGround(pickColor)">
+                        <option value="Default">Default</option>
+                        <option value="Aquamarine">Aquamarine</option>
+                        <option value="Gray">Gray</option>
+                        <option value="Green">Green</option>
+                        <option value="RedPink">RedPink</option>
+                        <option value="Silver">Silver</option>
+                    </select>
+                </div>
+    
                 <h2>My Dragon List</h2>
                 <h4>Length: {{code.length}}</h4>
             </div>
@@ -101,7 +113,7 @@
             <div class="list">
                 <p v-show="!dataDisplay.length"> No task </p>
                 <ul>
-                    <li v-for="(task,index) in dataDisplay" class="oneLine">
+                    <li v-if="dataDisplay.length > 0" v-for="(task,index) in dataDisplay" class="oneLine">
                         <div class="index">
                             <h4 class="lineIndex">{{index+1}}</h4>
                             <h4 class="itemList">

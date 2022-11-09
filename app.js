@@ -11,9 +11,6 @@ Vue.createApp ({
             code: "",
             codeLength: 7, 
 
-            isShow: false,
-            isHide: true,
-
             tables:"",
             hiddenCode: true,
 
@@ -24,11 +21,14 @@ Vue.createApp ({
             currentPage: 1,
             totalPages: 0,
             pageActive: 1,
+
+            pickColor: '',
         };
     },
 
     created() {
-        this.index()
+        this.index();
+        this.chooseColorBackGround();
     },
 
     watch: {
@@ -41,8 +41,12 @@ Vue.createApp ({
     methods: {
         index(){
             this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];   
-            this.paginationData(this.tasks);
-            this.displayPaginationPage(this.currentPage);
+            if (this.tasks.length > 0){
+                this.paginationData(this.tasks);
+                this.displayPaginationPage(this.currentPage);    
+            } else {
+                this.dataDisplay = this.tasks;
+            }
         },
 
         addTask() {
@@ -236,6 +240,28 @@ Vue.createApp ({
         lastPage(){
             this.displayPaginationPage(this.totalPages);
         },
+
+        chooseColorBackGround(pickColor){
+            if (pickColor == 'Default'){
+                document.getElementById('html').style.backgroundColor = '#fcdad5';
+            }
+            if (pickColor == 'Aquamarine'){
+                document.getElementById('html').style.backgroundColor = 'aquamarine';
+            } 
+            if (pickColor == 'Gray'){
+                document.getElementById('html').style.backgroundColor = 'rgb(160,160,160)';
+            }
+            if (pickColor == 'Green'){
+                document.getElementById('html').style.backgroundColor = 'rgb(153,255,153)';
+            }
+            if (pickColor == 'RedPink'){
+                document.getElementById('html').style.backgroundColor = 'rgb(255,204,153)';
+            }
+            if (pickColor == 'Silver'){
+                document.getElementById('html').style.backgroundColor = 'rgb(224,224,224)';
+            }
+        },
+
     },
     
 }).mount("#app");
