@@ -10,7 +10,6 @@ Vue.createApp ({
             code: "",
             codeLength: 7, 
 
-<<<<<<< HEAD
             tables:"",
             hiddenCode: true,
 
@@ -23,14 +22,6 @@ Vue.createApp ({
             pageActive: 1,
 
             pickColor: 'Default',
-=======
-            // Setting Pagination
-            limit: 7,
-            dataDisplay: [], // Display Records
-            dataPage: [],
-            currentPage: 1,
-            totalPages: 0,
->>>>>>> master
         };
     },
 
