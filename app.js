@@ -182,6 +182,55 @@ Vue.createApp ({
 
         },
 
+        paginationData(dataPage){
+            try {
+                this.dataPage = dataPage;
+                this.totalPages = Math.round(this.dataPage.length / this.limit);
+                if(Math.round(this.dataPage.length / this.limit)<(this.dataPage.length / this.limit)){
+                    this.totalPages++;
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        },
+
+        displayPaginationPage(numberPage){
+            try {
+                this.currentPage = numberPage;
+                var numberRowPage = Number(this.limit); //Because input text
+                var totalRecords = this.dataPage.length;
+                var start = (numberPage - 1) * numberRowPage;
+                var end = start + numberRowPage;
+                this.dataDisplay = [];
+                if(end < totalRecords){
+                    while(start < end){
+                        this.dataDisplay.push(this.dataPage[start]);
+                        start++;
+                    }
+                } else {
+                    while(start < totalRecords){
+                        this.dataDisplay.push(this.dataPage[start]);
+                        start++;
+                    }
+                }
+
+                //If page no records 
+                if(this.dataDisplay.length < 1){
+                    this.currentPage = this.currentPage - 1;
+                    this.displayPaginationPage(this.currentPage);
+                }
+            } catch (Ex) {
+                console.log("Error: "+ex);
+            }
+        },
+
+        firstPage(){
+            this.displayPaginationPage(1);
+        },
+
+        lastPage(){
+            this.displayPaginationPage(this.totalPages);
+        },
     },
     
 }).mount("#app");
