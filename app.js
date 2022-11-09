@@ -64,7 +64,6 @@ Vue.createApp ({
                 });
                 localStorage.setItem("tasks", JSON.stringify(this.tasks));
                 this.task = "";
-                this.getTasks();
             }
             this.index();
         },
