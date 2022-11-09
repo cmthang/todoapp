@@ -25,4 +25,8 @@ Version 7: (Simple Page)
 
     Date: Friday, November 04th 2022.
     Note: Website Minimalist. Add picker color. 
-   
+
+Version 8: 
+
+    Date: Wednesday, November 09th 2022.
+    Note: Pagination page. Picker color.

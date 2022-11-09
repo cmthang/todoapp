@@ -10,31 +10,49 @@ Vue.createApp ({
             code: "",
             codeLength: 7, 
 
+            tables:"",
+            hiddenCode: true,
+
             // Setting Pagination
             limit: 7,
-            dataDisplay: [], // Display Records
+            dataDisplay: [],
             dataPage: [],
             currentPage: 1,
             totalPages: 0,
+            pageActive: 1,
+
+            pickColor: 'Default',
         };
     },
 
     created() {
-        this.getTasks();
-        this.chooseColorBackGround();
+        this.index();
+    },
+
+    watch: {
+        loading(){},
+    },
+
+    computed: {
     },
 
     methods: {
-        getTasks(){
-            try
-            {
-                this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];   
+        index(){
+            this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];   
+            if (this.tasks.length > 0){
                 this.paginationData(this.tasks);
-                this.displayPaginationPage(this.currentPage);
+                this.displayPaginationPage(this.currentPage);    
+            } else {
+                this.dataDisplay = this.tasks;
             }
-            catch (e){
-                console.log(e);
-            };
+            try {
+                this.pickColor = JSON.parse(localStorage.getItem("backgroundColor"));
+                if (this.pickColor){             
+                    this.chooseColorBackGround(this.pickColor); 
+                }      
+            } catch (Ex) {
+                console.log("Error Background Color: "+Ex);
+            }
         },
 
         addTask() {
@@ -48,6 +66,7 @@ Vue.createApp ({
                 this.task = "";
                 this.getTasks();
             }
+            this.index();
         },
 
         removeTask(task) {
@@ -56,7 +75,7 @@ Vue.createApp ({
             });
             this.tasks = newTasks;
             localStorage.setItem("tasks", JSON.stringify(this.tasks));
-            this.getTasks();
+            this.index();
         },
 
         fixTask(index) {
@@ -66,7 +85,7 @@ Vue.createApp ({
                 this.task = "";
                 localStorage.setItem("tasks", JSON.stringify(this.tasks));
             }
-            this.getTasks();
+            this.index();
         },
 
         clearInput(){
@@ -182,7 +201,7 @@ Vue.createApp ({
             try {
                 this.dataPage = dataPage;
                 this.totalPages = Math.round(this.dataPage.length / this.limit);
-                if (Math.round(this.dataPage.length / this.limit) < (this.dataPage.length / this.limit)){
+                if(Math.round(this.dataPage.length / this.limit)<(this.dataPage.length / this.limit)){
                     this.totalPages++;
                 }
             } catch (error) {
@@ -193,31 +212,31 @@ Vue.createApp ({
         displayPaginationPage(numberPage){
             try {
                 this.currentPage = numberPage;
+                this.pageActive = numberPage;
                 var numberRowPage = Number(this.limit); //Because input text
                 var totalRecords = this.dataPage.length;
                 var start = (numberPage - 1) * numberRowPage;
                 var end = start + numberRowPage;
-
                 this.dataDisplay = [];
-                if (end < totalRecords){
-                    while (start <end){
+                if(end < totalRecords){
+                    while(start < end){
                         this.dataDisplay.push(this.dataPage[start]);
                         start++;
                     }
                 } else {
-                    while (start < totalRecords){
+                    while(start < totalRecords){
                         this.dataDisplay.push(this.dataPage[start]);
                         start++;
                     }
                 }
 
-                // If page no records
-                if (this.dataDisplay.length < 1){
+                //If page no records 
+                if(this.dataDisplay.length < 1){
                     this.currentPage = this.currentPage - 1;
                     this.displayPaginationPage(this.currentPage);
                 }
             } catch (Ex) {
-                console.log("Error displayPaginationPage: "+Ex);
+                console.log("Error: "+ex);
             }
         },
 
@@ -229,9 +248,28 @@ Vue.createApp ({
             this.displayPaginationPage(this.totalPages);
         },
 
-        chooseColorBackGround(){
-            document.getElementById('html').style.backgroundColor = 'aquamarine';
-        }
+        chooseColorBackGround(pickColor){
+            if (pickColor == 'Default'){
+                document.getElementById('html').style.backgroundColor = '#fcdad5';
+            }
+            if (pickColor == 'Aquamarine'){
+                document.getElementById('html').style.backgroundColor = 'aquamarine';
+            } 
+            if (pickColor == 'Gray'){
+                document.getElementById('html').style.backgroundColor = 'rgb(160,160,160)';
+            }
+            if (pickColor == 'Green'){
+                document.getElementById('html').style.backgroundColor = 'rgb(153,255,153)';
+            }
+            if (pickColor == 'RedPink'){
+                document.getElementById('html').style.backgroundColor = 'rgb(255,204,153)';
+            }
+            if (pickColor == 'Silver'){
+                document.getElementById('html').style.backgroundColor = 'rgb(224,224,224)';
+            }
+            localStorage.setItem("backgroundColor", JSON.stringify(pickColor));
+        },
+
     },
     
 }).mount("#app");
