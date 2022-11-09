@@ -22,13 +22,12 @@ Vue.createApp ({
             totalPages: 0,
             pageActive: 1,
 
-            pickColor: '',
+            pickColor: 'Default',
         };
     },
 
     created() {
         this.index();
-        this.chooseColorBackGround();
     },
 
     watch: {
@@ -46,6 +45,14 @@ Vue.createApp ({
                 this.displayPaginationPage(this.currentPage);    
             } else {
                 this.dataDisplay = this.tasks;
+            }
+            try {
+                this.pickColor = JSON.parse(localStorage.getItem("backgroundColor"));
+                if (this.pickColor){             
+                    this.chooseColorBackGround(this.pickColor); 
+                }      
+            } catch (Ex) {
+                console.log("Error Background Color: "+Ex);
             }
         },
 
@@ -260,6 +267,7 @@ Vue.createApp ({
             if (pickColor == 'Silver'){
                 document.getElementById('html').style.backgroundColor = 'rgb(224,224,224)';
             }
+            localStorage.setItem("backgroundColor", JSON.stringify(pickColor));
         },
 
     },

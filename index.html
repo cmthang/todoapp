@@ -146,14 +146,15 @@
 
             <!-- Button Pagination Page -->
             <div id="pagination" style="display: inline-flex;">
-                    <a class="page" v-on:click="firstPage()">
+                    <a v-if="totalPages > 0" class="page" v-on:click="firstPage()">
                         &laquo;                      
                     </a>
                 <div class="page" v-for="page in totalPages" :key="page">
+                    <a class="page active" v-if="totalPages < 1"> 1 </a>
                     <a class="page" v-if="pageActive != page" v-on:click="displayPaginationPage(page)">{{page}}</a>
                     <a class="page active" v-if="pageActive == page" v-on:click="displayPaginationPage(page)">{{page}}</a>
                 </div>
-                    <a class="page" v-on:click="lastPage()">
+                    <a v-if="totalPages > 0" class="page" v-on:click="lastPage()">
                         &raquo;
                     </a>
             </div>        
