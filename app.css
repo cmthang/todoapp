@@ -1,0 +1,238 @@
+html {
+  background-color: #fcdad5;
+}
+
+#app {
+  width: 100%;
+  text-align: center;
+}
+
+h4 {
+  margin: 0;
+  padding: 0;
+}
+
+.index {
+  display: inline-flex;
+  align-items: center;
+}
+
+.lineIndex {
+  color: #c18c00;
+}
+
+.content {
+  color: rgb(255, 102, 102);
+  height: 80px;
+}
+.buttonAddClear {
+  outline-style: auto;
+  background-color: transparent;
+  border-radius: 9px;
+  color: green;
+  margin-left: 7px;
+  margin-right: 7px;
+  padding-top: 2px;
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
+
+.input {
+  display: inline-flex;
+}
+
+.inputBar {
+  border-color: blueviolet;
+}
+
+.itemList {
+  color: rgb(255, 153, 51);
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.buttonRemove {
+  color: rgb(255, 102, 178);
+}
+
+.textButton {
+  padding-left: 2px;
+}
+
+.buttonFix {
+  margin-left: 5px;
+  margin-right: 5px;
+  color: rgb(200, 46, 49);
+}
+
+.generatePassword {
+  padding-bottom: 5px;
+}
+
+.buttonPassword {
+  color: rgb(51, 0, 51);
+}
+
+.inputLength {
+  width: 50px;
+}
+
+.setting {
+  display: inline-flex;
+  color: rgb(128, 128, 128);
+}
+
+.checkBox {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.linePassword {
+  margin-bottom: 10px;
+}
+
+.linePicked {
+  margin-bottom: 5px;
+  color: rgb(128, 0, 0);
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+.fullPass {
+  height: 120px;
+}
+
+.code {
+  height: 24px;
+}
+
+.inputOne {
+  width: 100px;
+}
+
+/* Pagination */
+.page {
+  padding: 0.25rem;
+}
+
+.page:hover {
+  cursor: pointer;
+}
+
+<<<<<<< HEAD
+.active {
+  color: white;
+  background-color: red;
+  border-radius: 0.5rem;;
+}
+=======
+.tableAccounts {
+  width: 100%;
+}
+
+.rowTableAccounts {
+  color: rgb(153, 0, 153);
+}
+
+.buttonLink {
+  display: inline-flex;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: rgb(200, 46, 49);
+}
+
+.titleTableAccounts {
+  color: rgb(102, 0, 51);
+}
+
+.titleModalEditAccount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+  margin: auto;
+}
+
+.inputEditCode {
+  width: 140px;
+}
+
+.rowTwo {
+  height: 280px;
+}
+
+.columnOne {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  align-items: center;
+  height: 45%;
+  width: 80%;
+}
+
+.userNameAccount {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.passwordAccount {
+  display: flex;
+  justify-content: space-between;
+}
+
+.textareaAccount {
+  height: 100px;
+  width: 240px;
+  resize: none;
+}
+
+.columnTwo {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  align-items: center;
+  height: 45%;
+  width: 80%;
+}
+
+.userNameAccount {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.passwordAccount {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonEditAccount {
+  margin-top: 10px;
+}
+
+/* Set the style for the a tag */
+.pagination a {
+  color: black;
+  float: left;
+  padding: 12px 18px;
+  text-decoration: none;
+  }
+  /* set the style for the active class */
+  .pagination a.active {
+  background-color: dodgerblue;
+  color: white;
+  /*Circle Design with CSS*/
+  border-radius: 50%;
+  }
+  /* add background color when user hovers on inactive class */
+  .pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 50%;
+  }
+>>>>>>> master
