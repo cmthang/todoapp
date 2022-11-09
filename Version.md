@@ -30,3 +30,8 @@ Version 8:
 
     Date: Wednesday, November 09th 2022.
     Note: Pagination page. Picker color.
+
+Version 9:
+
+    Date: Wednesday, November 09th 2022.
+    Note: Combo key. Focus input.
