@@ -124,8 +124,115 @@ td {
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 .active {
   color: white;
   background-color: red;
   border-radius: 0.5rem;;
 }
+=======
+.tableAccounts {
+  width: 100%;
+}
+
+.rowTableAccounts {
+  color: rgb(153, 0, 153);
+}
+
+.buttonLink {
+  display: inline-flex;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: rgb(200, 46, 49);
+}
+
+.titleTableAccounts {
+  color: rgb(102, 0, 51);
+}
+
+.titleModalEditAccount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+  margin: auto;
+}
+
+.inputEditCode {
+  width: 140px;
+}
+
+.rowTwo {
+  height: 280px;
+}
+
+.columnOne {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  align-items: center;
+  height: 45%;
+  width: 80%;
+}
+
+.userNameAccount {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.passwordAccount {
+  display: flex;
+  justify-content: space-between;
+}
+
+.textareaAccount {
+  height: 100px;
+  width: 240px;
+  resize: none;
+}
+
+.columnTwo {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  align-items: center;
+  height: 45%;
+  width: 80%;
+}
+
+.userNameAccount {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.passwordAccount {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonEditAccount {
+  margin-top: 10px;
+}
+
+/* Set the style for the a tag */
+.pagination a {
+  color: black;
+  float: left;
+  padding: 12px 18px;
+  text-decoration: none;
+  }
+  /* set the style for the active class */
+  .pagination a.active {
+  background-color: dodgerblue;
+  color: white;
+  /*Circle Design with CSS*/
+  border-radius: 50%;
+  }
+  /* add background color when user hovers on inactive class */
+  .pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 50%;
+  }
+>>>>>>> master

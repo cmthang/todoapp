@@ -1,4 +1,3 @@
-
 Vue.createApp ({
     data() {
         return {
@@ -11,6 +10,7 @@ Vue.createApp ({
             code: "",
             codeLength: 7, 
 
+<<<<<<< HEAD
             tables:"",
             hiddenCode: true,
 
@@ -23,6 +23,14 @@ Vue.createApp ({
             pageActive: 1,
 
             pickColor: 'Default',
+=======
+            // Setting Pagination
+            limit: 7,
+            dataDisplay: [], // Display Records
+            dataPage: [],
+            currentPage: 1,
+            totalPages: 0,
+>>>>>>> master
         };
     },
 
@@ -65,6 +73,7 @@ Vue.createApp ({
                 });
                 localStorage.setItem("tasks", JSON.stringify(this.tasks));
                 this.task = "";
+                this.getTasks();
             }
             this.index();
         },
