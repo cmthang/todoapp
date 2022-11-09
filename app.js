@@ -4,6 +4,8 @@ Vue.createApp ({
             tasks: [],
             task: "",
 
+            deleteTasks: [],
+
             length: 20,
             picked: ["alpha", "capitalAlpha", "Numbers", "Symbols"],
 
@@ -72,6 +74,10 @@ Vue.createApp ({
         },
 
         removeTask(task) {
+            console.log(task);
+            this.deleteTasks.push(task);
+            console.log(this.deleteTasks);
+
             let newTasks = this.tasks.filter(function (item){
                 return task.id !== item.id;
             });
