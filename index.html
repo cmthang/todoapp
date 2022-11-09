@@ -133,22 +133,18 @@
             </div>
 
             <!-- Button Pagination Page -->
-            <ul id="pagination">
-                <li>
-                    <a v-on:click="firstPage()">
+            <div id="pagination" style="display: inline-flex;">
+                    <a class="page" v-on:click="firstPage()">
                         &laquo;                      
                     </a>
-                </li>
-                <li v-for="page in totalPages" :key="page">
-                    <li><a v-if="pageActive != page" v-on:click="displayPaginationPage(page)">{{page}}</a></li>
-                    <li><a class="active" v-if="pageActive == page" v-on:click="displayPaginationPage(page)">{{page}}</a></li>
-                </li>
-                <li>
-                    <a v-on:click="lastPage()">
+                <div class="page" v-for="page in totalPages" :key="page">
+                    <a class="page" v-if="pageActive != page" v-on:click="displayPaginationPage(page)">{{page}}</a>
+                    <a class="page active" v-if="pageActive == page" v-on:click="displayPaginationPage(page)">{{page}}</a>
+                </div>
+                    <a class="page" v-on:click="lastPage()">
                         &raquo;
                     </a>
-                </li>
-            </ul>        
+            </div>        
         </div>          
 
         <script src="https://unpkg.com/vue@next"></script>
