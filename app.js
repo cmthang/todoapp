@@ -36,6 +36,7 @@ Vue.createApp ({
     },
 
     mounted(){
+        this.$refs.task.focus();
     },
 
     methods: {
