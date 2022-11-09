@@ -27,18 +27,21 @@
 
             <div class="fullCode" style="height: auto; padding-top: 20px ;">
                 <div class="code">
-
-                    <div style="display: flex; justify-content:center; padding-top: 5px; padding-left: 20px;">
+                    <div style="height: 40px;">
+                        <h4>Length: {{code.length}}</h4>
+                    </div>
+    
+                    <div style="display: flex; justify-content:center; padding-left: 20px;">
                         <label>Code:</label>
                         <input v-if="hiddenCode == true" type="password" class="inputOne" v-model="code"/>
                         <input v-if="hiddenCode == false" type="text" class="inputOne" v-model="code"/>
 
-                        <label style="padding-left: 5px;">Hidden</label>
+                        <label style="padding-left: 5px;">Hide</label>
                         <input type="checkbox" v-model="hiddenCode" checked/>    
                     </div>
                 </div>
         
-                <div class="generatePassword" style="padding-top: 20px;">
+                <div class="generatePassword" style="padding-top: 60px;">
                     <div class="linePassword">
                         <a href="#" v-on:click.prevent="generatePassword()" class="buttonPassword">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-seam-fill" viewBox="0 0 16 16">
