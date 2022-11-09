@@ -23,17 +23,12 @@ Vue.createApp ({
             dataPage: [],
             currentPage: 1,
             totalPages: 0,
+            pageActive: 1,
         };
     },
 
     created() {
-        try
-        {
-            this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];   
-        }
-        catch (e){
-            console.log(e);
-        };
+        this.index()
     },
 
     watch: {
@@ -44,6 +39,12 @@ Vue.createApp ({
     },
 
     methods: {
+        index(){
+            this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];   
+            this.paginationData(this.tasks);
+            this.displayPaginationPage(this.currentPage);
+        },
+
         addTask() {
             if (this.task != "")
             {
@@ -54,6 +55,7 @@ Vue.createApp ({
                 localStorage.setItem("tasks", JSON.stringify(this.tasks));
                 this.task = "";
             }
+            this.index();
         },
 
         removeTask(task) {
@@ -62,6 +64,7 @@ Vue.createApp ({
             });
             this.tasks = newTasks;
             localStorage.setItem("tasks", JSON.stringify(this.tasks));
+            this.index();
         },
 
         fixTask(index) {
@@ -71,6 +74,7 @@ Vue.createApp ({
                 this.task = "";
                 localStorage.setItem("tasks", JSON.stringify(this.tasks));
             }
+            this.index();
         },
 
         clearInput(){
@@ -197,6 +201,7 @@ Vue.createApp ({
         displayPaginationPage(numberPage){
             try {
                 this.currentPage = numberPage;
+                this.pageActive = numberPage;
                 var numberRowPage = Number(this.limit); //Because input text
                 var totalRecords = this.dataPage.length;
                 var start = (numberPage - 1) * numberRowPage;

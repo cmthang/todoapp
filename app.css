@@ -115,143 +115,33 @@ td {
   width: 100px;
 }
 
-/* The Modal (background) */
-.hideModal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+/* Pagination */
+#pagination {
+  margin: 0;
+  padding: 0;
+  text-align: center
 }
-
-.showModal {
-  display: block; /* Show Modal s*/
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+#pagination li {
+  display: inline
 }
-
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  height: 400px;
-  background-color: rgb(51, 0, 25);
-  color: rgb(255, 255, 51);
-}
-
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
+#pagination li a {
+  display: inline-block;
   text-decoration: none;
-  cursor: pointer;
+  padding: 5px 10px;
+  color: #000
 }
 
-.tableAccounts {
-  width: 100%;
+#pagination li a {
+  border-radius: 5px;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s
+    
 }
-
-.rowTableAccounts {
-  color: rgb(153, 0, 153);
+#pagination li a.active {
+  background-color: #4caf50;
+  color: #fff
 }
-
-.buttonLink {
-  display: inline-flex;
-  margin-left: 5px;
-  margin-right: 5px;
-  color: rgb(200, 46, 49);
-}
-
-.titleTableAccounts {
-  color: rgb(102, 0, 51);
-}
-
-.titleModalEditAccount {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 40%;
-  margin: auto;
-}
-
-.inputEditCode {
-  width: 140px;
-}
-
-.rowTwo {
-  height: 280px;
-}
-
-.columnOne {
-  display: flex;
-  justify-content: space-between;
-  margin: auto;
-  align-items: center;
-  height: 45%;
-  width: 80%;
-}
-
-.userNameAccount {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.passwordAccount {
-  display: flex;
-  justify-content: space-between;
-}
-
-.textareaAccount {
-  height: 100px;
-  width: 240px;
-  resize: none;
-}
-
-.columnTwo {
-  display: flex;
-  justify-content: space-between;
-  margin: auto;
-  align-items: center;
-  height: 45%;
-  width: 80%;
-}
-
-.userNameAccount {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.passwordAccount {
-  display: flex;
-  justify-content: space-between;
-}
-
-.buttonEditAccount {
-  margin-top: 10px;
-}
+#pagination li a:hover:not(.active) {
+  background-color: #ddd;
+  color:#000;
+} 
