@@ -11,25 +11,18 @@ Vue.createApp ({
             code: "",
             codeLength: 7, 
 
-            fullData: [],
-            accounts: [],
-
             isShow: false,
             isHide: true,
 
-            getId: '',
-            id: '',
-            pageName: "",
-            userName: "",
-            password: "",
-            link: "",
-            info: "",
-            note: "",
-            editCode: "",
-
             tables:"",
             hiddenCode: true,
-            hiddenTables: true,
+
+            // Setting Pagination
+            limit: 7,
+            dataDisplay: [],
+            dataPage: [],
+            currentPage: 1,
+            totalPages: 0,
         };
     },
 
@@ -37,8 +30,6 @@ Vue.createApp ({
         try
         {
             this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];   
-            this.fullData = JSON.parse(localStorage.getItem("fullData")) || [];
-            this.flagAccount();
         }
         catch (e){
             console.log(e);
@@ -50,11 +41,6 @@ Vue.createApp ({
     },
 
     computed: {
-        loading(){
-            this.accounts = this.fullData.filter((data)=>{
-                return this.code == data.code;
-            });
-        },
     },
 
     methods: {
@@ -169,109 +155,6 @@ Vue.createApp ({
             return this.task = password;
         },
 
-        isClean(){
-            localStorage.setItem("fullData", []);
-        },
-
-        getData(){
-          
-            const options = {
-                method: 'GET',
-                url: 'https://apichallengermydragon.000webhostapp.com/api/'+this.tables.trim(),
-                // url: 'http://localhost:8000/api/'+this.tables.trim(),
-            }
-
-            try {
-                axios.request(options).then((response) =>
-                {
-                    this.fullData = response.data;
-                    localStorage.setItem("fullData", JSON.stringify(this.fullData));
-                })
-    
-            }
-            catch(err){
-                console.log(err);
-            }
-
-        },
-
-        addData(){
-            const options = {
-                method: 'POST',
-                url: 'https://apichallengermydragon.000webhostapp.com/api/'+this.tables.trim(),
-                // url: 'http://localhost:8000/api/'+this.tables.trim(),
-
-                data: {
-                    "account_page" : "this.pageName",
-                    "account_name" : "this.userName",
-                    "account_password" : "lB3xD5!xa5*nmW7ZG#s1",
-                    "account_note" : "Big Waves",
-                    "account_link" : "https://bigger2407.blogspot.com/",
-                    "account_info" : "1.Hegemony No. 1. Unstoppable"+"2.The road does not return."+"3.No explanation",
-                    "code": this.code,  
-                }
-            }
-            try {
-                
-                axios.request(options).then((response) =>
-                {
-                    console.log(response);
-                    // this.getData();
-                })
-            }
-            catch(err){
-                console.log(err);
-            }
-
-            this.isShow = false;
-            this.isHide = true;
-        },
-
-        editData(){
-            const options = {
-                method: 'PUT',
-                // url: 'https://apichallengermydragon.000webhostapp.com/api/account/'+this.id,
-                url: 'http://localhost:8000/api/account/'+this.id,
-
-                data: {
-                    'account_page' : this.pageName,
-                    'account_name' : this.userName,
-                    'account_password' : this.password,
-                    'account_link' : this.link,
-                    'account_info' : this.info,
-                    'account_note' : this.note,
-                    'code': this.editCode,
-                }
-            }
-            try {
-                axios.request(options).then(() =>
-                {
-                    this.getData();
-                })
-    
-            }
-            catch(err){
-                console.log(err);
-            }
-
-            this.isShow = false;
-            this.isHide = true;
-        },
-
-        isRedirect(link){
-            window.open(link);
-        },
-
-        flagAccount(){
-            if(this.code.length >= this.codeLength)
-                return true;    
-            return false;
-        },
-
-        isTakes(){
-            this.getData();
-        },
-
         copy(getText){
             // navigator clipboard api needs a secure context (https)
             if (navigator.clipboard && window.isSecureContext) {
@@ -299,45 +182,6 @@ Vue.createApp ({
 
         },
 
-        openModal($account){
-            this.isHide = false;
-            this.isShow = true;
-
-            this.getId = $account.id;
-            this.id = this.getId;
-            this.pageName = $account.account_page;
-            this.userName = $account.account_name;
-            this.password = $account.account_password;
-            this.link = $account.account_link;
-            this.info = $account.account_info;
-            this.note = $account.account_note;
-            this.editCode = $account.code;
-
-            this.getId = '';
-        },
-
-        showModal(){
-            this.isHide = false;
-            this.isShow = true;
-
-            this.pageName = "pageName",
-            this.userName = "userName",
-            this.password = "password",
-            this.link = "http://www.nettruyenme.com/",
-            this.info = "Hegemony No. 1. Unstoppable. The road does not return. No explanation",
-            this.note = "Big Waves",
-            this.editCode = "AddingCode"
-        },
-
-        closeModal(){
-            this.isHide = true;
-            this.isShow = false;
-        },
-
-        isClear(){
-            this.tables = "";
-            this.code = "";
-        }
     },
     
 }).mount("#app");
