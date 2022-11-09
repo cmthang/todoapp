@@ -21,3 +21,12 @@ Version 6:
     Date: Monday, August 29th 2022.
     Note: Full Api Accounts.
     
+Version 7: (Simple Page)
+
+    Date: Friday, November 04th 2022.
+    Note: Website Minimalist. Add picker color. 
+
+Version 8: 
+
+    Date: Wednesday, November 09th 2022.
+    Note: Pagination page. Picker color.
