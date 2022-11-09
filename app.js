@@ -5,6 +5,7 @@ Vue.createApp ({
             task: "",
 
             deleteTasks: [],
+            diary: [],
 
             length: 20,
             picked: ["alpha", "capitalAlpha", "Numbers", "Symbols"],
@@ -44,6 +45,8 @@ Vue.createApp ({
     methods: {
         index(){
             this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];   
+            this.diary = JSON.parse(localStorage.getItem("diary")) || [];   
+
             if (this.tasks.length > 0){
                 this.paginationData(this.tasks);
                 this.displayPaginationPage(this.currentPage);    
@@ -74,9 +77,18 @@ Vue.createApp ({
         },
 
         removeTask(task) {
-            console.log(task);
             this.deleteTasks.push(task);
-            console.log(this.deleteTasks);
+
+            var flagCheck = 0;
+            this.diary.forEach(element => {
+                if (element.id == task.id){
+                    flagCheck++;
+                }
+            });
+            if (flagCheck == 0){
+                this.diary.push(task);
+                localStorage.setItem("diary", JSON.stringify(this.diary));    
+            }
 
             let newTasks = this.tasks.filter(function (item){
                 return task.id !== item.id;
@@ -84,6 +96,21 @@ Vue.createApp ({
             this.tasks = newTasks;
             localStorage.setItem("tasks", JSON.stringify(this.tasks));
             this.index();
+        },
+
+        restoreTask(){
+            if(this.deleteTasks.length > 0){
+                console.log(this.deleteTasks[this.deleteTasks.length-1]);
+                this.tasks.push(this.deleteTasks[this.deleteTasks.length-1]);
+                var tempt = [];
+                for ( var i = 0; i < this.deleteTasks.length-2; i++ ){
+                    tempt.push(this.deleteTasks[i]);
+                }
+                this.deleteTasks = tempt; 
+
+                localStorage.setItem("tasks", JSON.stringify(this.tasks));
+                this.index();
+            }
         },
 
         fixTask(index) {
@@ -280,6 +307,8 @@ Vue.createApp ({
             }
             localStorage.setItem("backgroundColor", JSON.stringify(pickColor));
         },
+
+
 
     },
     
