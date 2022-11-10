@@ -78,7 +78,6 @@ Vue.createApp ({
 
         removeTask(task) {
             this.deleteTasks.push(task);
-
             var flagCheck = 0;
             this.diary.forEach(element => {
                 if (element.id == task.id){
@@ -100,7 +99,6 @@ Vue.createApp ({
 
         restoreTask(){
             if(this.deleteTasks.length > 0){
-                console.log(this.deleteTasks[this.deleteTasks.length-1]);
                 this.tasks.push(this.deleteTasks[this.deleteTasks.length-1]);
                 var tempt = [];
                 for ( var i = 0; i < this.deleteTasks.length-2; i++ ){
@@ -308,7 +306,18 @@ Vue.createApp ({
             localStorage.setItem("backgroundColor", JSON.stringify(pickColor));
         },
 
-
+        switchArr(){
+            if (this.deleteTasks.length > 0){
+                this.paginationData(this.deleteTasks);
+                this.displayPaginationPage(1);    
+            } else {
+                this.dataDisplay = [];
+            }
+            var tempt = this.tasks;
+            this.tasks = this.deleteTasks;
+            this.deleteTasks = tempt;
+            localStorage.setItem("tasks", JSON.stringify(this.tasks));
+        },
 
     },
     

@@ -39,3 +39,8 @@ Version 9:
               (Ctrl+Delete) -> Clear Input
               (Ctrl+Home) -> Generate Password
               (Ctrl+End) -> Next Page.
+
+Version 10: 
+
+    Date: Thursday, November 10th 2022.
+    Note: Switch Array.
