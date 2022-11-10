@@ -4,8 +4,14 @@ Vue.createApp ({
             tasks: [],
             task: "",
 
+            action: '', // Flag To Action Task
+
+            // Restore Task After Delete 
             deleteTasks: [],
             diary: [],
+
+            //  Restore Task After Fix
+            fixTasks: [],
 
             length: 20,
             picked: ["alpha", "capitalAlpha", "Numbers", "Symbols"],
@@ -67,7 +73,8 @@ Vue.createApp ({
             if (this.task != "")
             {
                 this.tasks.push ({
-                    id: Date.now(),
+                    // id: Date.now(),local
+                    id: this.randomId(),
                     name: this.task,
                 });
                 localStorage.setItem("tasks", JSON.stringify(this.tasks));
@@ -77,6 +84,7 @@ Vue.createApp ({
         },
 
         removeTask(task) {
+            this.action = 'Delete Task';
             this.deleteTasks.push(task);
             var flagCheck = 0;
             this.diary.forEach(element => {
@@ -98,26 +106,57 @@ Vue.createApp ({
         },
 
         restoreTask(){
-            if(this.deleteTasks.length > 0){
-                this.tasks.push(this.deleteTasks[this.deleteTasks.length-1]);
-                var tempt = [];
-                for ( var i = 0; i < this.deleteTasks.length-2; i++ ){
-                    tempt.push(this.deleteTasks[i]);
+            if (this.action == 'Delete Task'){
+                if(this.deleteTasks.length > 0){
+                    this.tasks.push(this.deleteTasks[this.deleteTasks.length-1]);
+                    var tempt = [];
+                    for ( var i = 0; i < this.deleteTasks.length-2; i++ ){
+                        tempt.push(this.deleteTasks[i]);
+                    }
+                    this.deleteTasks = tempt; 
+    
+                    localStorage.setItem("tasks", JSON.stringify(this.tasks));
+                    this.index();
+                }    
+            } 
+            if (this.action == 'Fix Task'){
+                // console.log(this.fixTasks);
+                if(this.fixTasks.length > 0){
+                    var tasks = this.tasks;
+                    var fixTasks = this.fixTasks;
+                    // Find index id in array task
+                    tasks.forEach((item,index) => {
+                        if (item.id == this.fixTasks[this.fixTasks.length-1].id){
+                            this.tasks[index] = this.fixTasks[this.fixTasks.length-1];                      
+                        }
+                    })
+                    var temptFixTasks = [];
+                    for(var i = 0; i < this.fixTasks.length - 1; i++){
+                        temptFixTasks.push(this.fixTasks[i]);
+                    }
+                    fixTasks = temptFixTasks;        
+                    this.tasks = tasks;
+                    this.fixTasks = fixTasks;
+                    localStorage.setItem("tasks", JSON.stringify(this.tasks));
                 }
-                this.deleteTasks = tempt; 
-
-                localStorage.setItem("tasks", JSON.stringify(this.tasks));
                 this.index();
             }
         },
 
         fixTask(index) {
+            this.action = 'Fix Task';
             if (this.task != "") 
             {
+                var fixTask = {
+                    id: this.tasks[index]['id'],
+                    name: this.tasks[index]['name']
+                };
+                this.fixTasks.push(fixTask);
                 this.tasks[index]['name'] = this.task;
                 this.task = "";
                 localStorage.setItem("tasks", JSON.stringify(this.tasks));
             }
+            console.log(this.fixTasks);
             this.index();
         },
 
@@ -319,6 +358,21 @@ Vue.createApp ({
             localStorage.setItem("tasks", JSON.stringify(this.tasks));
         },
 
+        randomId(){
+            var characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*_-+=";
+
+            var id = "";
+
+            for (var i = 0; i < 20; i++){
+                id += characters.charAt
+                (
+                    Math.floor( Math.random() * characters.length )
+                );
+
+            }
+
+            return id;
+        },
     },
     
 }).mount("#app");
