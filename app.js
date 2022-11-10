@@ -110,7 +110,7 @@ Vue.createApp ({
                 if(this.deleteTasks.length > 0){
                     this.tasks.push(this.deleteTasks[this.deleteTasks.length-1]);
                     var tempt = [];
-                    for ( var i = 0; i < this.deleteTasks.length-2; i++ ){
+                    for ( var i = 0; i < this.deleteTasks.length-1; i++ ){
                         tempt.push(this.deleteTasks[i]);
                     }
                     this.deleteTasks = tempt; 
