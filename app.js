@@ -73,7 +73,7 @@ Vue.createApp ({
             if (this.task != "")
             {
                 this.tasks.push ({
-                    // id: Date.now(),local
+                    // id: Date.now(),
                     id: this.randomId(),
                     name: this.task,
                 });
@@ -120,7 +120,6 @@ Vue.createApp ({
                 }    
             } 
             if (this.action == 'Fix Task'){
-                // console.log(this.fixTasks);
                 if(this.fixTasks.length > 0){
                     var tasks = this.tasks;
                     var fixTasks = this.fixTasks;
@@ -156,7 +155,6 @@ Vue.createApp ({
                 this.task = "";
                 localStorage.setItem("tasks", JSON.stringify(this.tasks));
             }
-            console.log(this.fixTasks);
             this.index();
         },
 
