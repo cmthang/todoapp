@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi" id="html">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>NoteText</title>
+        <link rel="stylesheet" href="app.css">
+        <link rel="shortcut icon" href="src/1.jpg">
+    </head>
+    <body>
+        <div id="app" style="width: 100%;padding: 0; margin: 0;"
+        >
+            <div class="content" style="height: auto;"
+                >
+                <div style="text-align: end; color:black">
+                    Picker Color 
+                    <select v-model="pickColor" @change="chooseColorBackGround(pickColor)">
+                        <option value="Default">Default</option>
+                        <option value="Aquamarine">Aquamarine</option>
+                        <option value="Gray">Gray</option>
+                        <option value="Green">Green</option>
+                        <option value="RedPink">RedPink</option>
+                        <option value="Silver">Silver</option>
+                    </select>
+                </div>
+    
+                <h2>My Dragon List</h2>
+            </div>
+
+            <div class="fullCode" style="height: auto; padding-top: 20px ;">
+                <div class="code">
+                    <div style="height: 40px;">
+                        <h4>Length: {{code.length}}</h4>
+                    </div>
+    
+                    <div style="display: flex; justify-content:center; padding-left: 20px;">
+                        <label>Code:</label>
+                        <input v-if="hiddenCode == true" type="password" class="inputOne" v-model="code"/>
+                        <input v-if="hiddenCode == false" type="text" class="inputOne" v-model="code"/>
+
+                        <label style="padding-left: 5px;">Hide</label>
+                        <input type="checkbox" v-model="hiddenCode" checked/>    
+                    </div>
+                </div>
+        
+                <div class="generatePassword" style="padding-top: 60px;">
+                    <div class="linePassword">
+                        <a href="#" v-on:click.prevent="generatePassword()" class="buttonPassword">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-seam-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M15.528 2.973a.75.75 0 0 1 .472.696v8.662a.75.75 0 0 1-.472.696l-7.25 2.9a.75.75 0 0 1-.557 0l-7.25-2.9A.75.75 0 0 1 0 12.331V3.669a.75.75 0 0 1 .471-.696L7.443.184l.01-.003.268-.108a.75.75 0 0 1 .558 0l.269.108.01.003 6.97 2.789ZM10.404 2 4.25 4.461 1.846 3.5 1 3.839v.4l6.5 2.6v7.922l.5.2.5-.2V6.84l6.5-2.6v-.4l-.846-.339L8 5.961 5.596 5l6.154-2.461L10.404 2Z"/>
+                            </svg>
+                            Password
+                            </a>
+                    </div>
+
+                    <div class="linePicked">
+                        Picked: {{ picked }} {{ length }}
+                    </div>
+            
+                    <div class="setting" >
+                        <div > 
+                            <label for="length">
+                                Length:
+                            </label>
+                            <input type="number" class="inputLength" v-model="length" id="length" min="1" max="47"/>
+                        </div>
+                            
+                        <div class="checkBox">
+                            <input type="checkbox" id="alpha" value="alpha" v-model="picked" checked/>
+                            <label for="length">
+                                alpha
+                            </label>
+                        </div>
+                            
+                        <div class="checkBox" >
+                            <input type="checkbox" class="" id="capitalAlpha" value="capitalAlpha" v-model="picked" checked/>                        
+                            <label for="length">
+                                Alpha
+                            </label>
+                        </div>
+                            
+                        <div class="checkBox" >
+                            <input type="checkbox" class="" id="numbers" value="Numbers" v-model="picked" checked/>
+                            <label for="length">
+                                Numbers
+                            </label>                   
+                        </div>
+                            
+                        <div class="checkBox" >
+                            <input type="checkbox" class="" id="symbols" value="Symbols" v-model="picked" checked/>
+                            <label for="length">
+                                Symbols
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input"              
+                    v-on:keyup.enter="addTask"
+                >
+                    <button v-on:click="clearInput()" class="buttonAddClear">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-balloon" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 9.984C10.403 9.506 12 7.48 12 5a4 4 0 0 0-8 0c0 2.48 1.597 4.506 4 4.984ZM13 5c0 2.837-1.789 5.227-4.52 5.901l.244.487a.25.25 0 1 1-.448.224l-.008-.017c.008.11.02.202.037.29.054.27.161.488.419 1.003.288.578.235 1.15.076 1.629-.157.469-.422.867-.588 1.115l-.004.007a.25.25 0 1 1-.416-.278c.168-.252.4-.6.533-1.003.133-.396.163-.824-.049-1.246l-.013-.028c-.24-.48-.38-.758-.448-1.102a3.177 3.177 0 0 1-.052-.45l-.04.08a.25.25 0 1 1-.447-.224l.244-.487C4.789 10.227 3 7.837 3 5a5 5 0 0 1 10 0Zm-6.938-.495a2.003 2.003 0 0 1 1.443-1.443C7.773 2.994 8 2.776 8 2.5c0-.276-.226-.504-.498-.459a3.003 3.003 0 0 0-2.46 2.461c-.046.272.182.498.458.498s.494-.227.562-.495Z"/>
+                        </svg>
+                        <label class="textButton">Empty</label>
+                    </button>
+                    <!-- Input Task -->
+                    <input ref="task"
+                        type="text" v-model="task" class="inputBar" placeholder="Input Texts"
+                        @keyup.exact.ctrl.home = "generatePassword"
+                        @keyup.exact.ctrl.delete = "clearInput"
+                        @keyup.exact.ctrl.end = "displayPaginationPage(currentPage+1)"                        @keyup.exact.ctrl.end = "displayPaginationPage(currentPage+1)"
+                        @keyup.exact.ctrl.insert = "restoreTask"
+                        @keyup.exact.ctrl.space = "switchArr"
+                    />
+                    <button v-on:click="addTask()" class="buttonAddClear">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-through-heart-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2.854 15.854A.5.5 0 0 1 2 15.5V14H.5a.5.5 0 0 1-.354-.854l1.5-1.5A.5.5 0 0 1 2 11.5h1.793l3.103-3.104a.5.5 0 1 1 .708.708L4.5 12.207V14a.5.5 0 0 1-.146.354l-1.5 1.5ZM16 3.5a.5.5 0 0 1-.854.354L14 2.707l-1.006 1.006c.236.248.44.531.6.845.562 1.096.585 2.517-.213 4.092-.793 1.563-2.395 3.288-5.105 5.08L8 13.912l-.276-.182A23.825 23.825 0 0 1 5.8 12.323L8.31 9.81a1.5 1.5 0 0 0-2.122-2.122L3.657 10.22a8.827 8.827 0 0 1-1.039-1.57c-.798-1.576-.775-2.997-.213-4.093C3.426 2.565 6.18 1.809 8 3.233c1.25-.98 2.944-.928 4.212-.152L13.292 2 12.147.854A.5.5 0 0 1 12.5 0h3a.5.5 0 0 1 .5.5v3Z"/>
+                        </svg>                    
+                        <label class="textButton">Adder</label>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="list">
+                <p v-show="!dataDisplay.length"> No task </p>
+                <ul>
+                    <li v-if="dataDisplay.length > 0" v-for="(task,index) in dataDisplay" class="oneLine">
+                        <div class="index">
+                            <h4 class="lineIndex">{{index+1}}</h4>
+                            <h4 class="itemList">
+                                {{ task.name }}  
+                                <a href="#" v-on:click.prevent="fixTask(index)" class="buttonFix">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-airplane-engines-fill" viewBox="0 0 16 16">
+                                        <path d="M8 0c-.787 0-1.292.592-1.572 1.151A4.347 4.347 0 0 0 6 3v3.691l-2 1V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.191l-1.17.585A1.5 1.5 0 0 0 0 10.618V12a.5.5 0 0 0 .582.493l1.631-.272.313.937a.5.5 0 0 0 .948 0l.405-1.214 2.21-.369.375 2.253-1.318 1.318A.5.5 0 0 0 5.5 16h5a.5.5 0 0 0 .354-.854l-1.318-1.318.375-2.253 2.21.369.405 1.214a.5.5 0 0 0 .948 0l.313-.937 1.63.272A.5.5 0 0 0 16 12v-1.382a1.5 1.5 0 0 0-.83-1.342L14 8.691V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v.191l-2-1V3c0-.568-.14-1.271-.428-1.849C9.292.591 8.787 0 8 0Z"/>
+                                    </svg>
+                                    Fix
+                                </a>
+                                <a href="#" v-on:click.prevent="removeTask(task)" class="buttonRemove">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-x" viewBox="0 0 16 16">
+                                        <path d="M6.146 8.146a.5.5 0 0 1 .708 0L8 9.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 10l1.147 1.146a.5.5 0 0 1-.708.708L8 10.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 10 6.146 8.854a.5.5 0 0 1 0-.708z"/>
+                                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                                        <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+                                    </svg>
+                                    Done
+                                </a>
+                                <a href="#" v-on:click.prevent="copy(task.name)" class="buttonCopy">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16">
+                                        <path d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 0-.708.707.5.5 0 0 0 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 0-.707.707.5.5 0 0 0 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/>
+                                    </svg>
+                                    Copy
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Button Pagination Page -->
+            <div id="pagination" style="display: inline-flex;">
+                    <a v-if="totalPages > 0" class="page" v-on:click="firstPage()">
+                        &laquo;                      
+                    </a>
+                <div class="page" v-for="page in totalPages" :key="page">
+                    <a class="page active" v-if="totalPages < 1"> 1 </a>
+                    <a class="page" v-if="pageActive != page" v-on:click="displayPaginationPage(page)">{{page}}</a>
+                    <a class="page active" v-if="pageActive == page" v-on:click="displayPaginationPage(page)">{{page}}</a>
+                </div>
+                    <a v-if="totalPages > 0" class="page" v-on:click="lastPage()">
+                        &raquo;
+                    </a>
+            </div>        
+        </div>          
+
+        <script src="https://unpkg.com/vue@next"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
