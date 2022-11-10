@@ -44,3 +44,8 @@ Version 10:
 
     Date: Thursday, November 10th 2022.
     Note: Switch Array.
+
+Version 11:
+
+    Date: Thursday, November 10th 2022.
+    Note: Restore Task Delete And Fix.
