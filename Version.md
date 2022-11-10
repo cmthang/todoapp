@@ -43,9 +43,9 @@ Version 9:
 Version 10: 
 
     Date: Thursday, November 10th 2022.
-    Note: Switch Array.
+    Note: Switch Array (ctrl+backspace).
 
 Version 11:
 
     Date: Thursday, November 10th 2022.
-    Note: Restore Task Delete And Fix. New Create Id For Task.
+    Note: Restore Task Delete And Fix. New Create Id For Task. CSS Pagination.
