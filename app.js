@@ -73,7 +73,6 @@ Vue.createApp ({
             if (this.task != "")
             {
                 this.tasks.push ({
-                    // id: Date.now(),
                     id: this.randomId(),
                     name: this.task,
                 });
@@ -359,9 +358,9 @@ Vue.createApp ({
         randomId(){
             var characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*_-+=";
 
-            var id = "";
+            var id = Date.now();
 
-            for (var i = 0; i < 20; i++){
+            for (var i = 0; i < 7; i++){
                 id += characters.charAt
                 (
                     Math.floor( Math.random() * characters.length )
