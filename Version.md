@@ -54,3 +54,4 @@ Version 12:
 
     Date: Friday, November 18th 2022.
     Note: Collapse the color picker and random id. Add gradient colors to the palette. 
+    Change short-icon gif.
