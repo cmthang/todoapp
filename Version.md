@@ -49,3 +49,9 @@ Version 11:
 
     Date: Thursday, November 10th 2022.
     Note: Restore Task Delete And Fix. New Create Id For Task. CSS Pagination.
+
+Version 12:
+
+    Date: Friday, November 18th 2022.
+    Note: Collapse the color picker and random id. Add gradient colors to the palette. 
+    Change short-icon gif.
