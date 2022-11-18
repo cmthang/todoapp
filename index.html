@@ -5,22 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>NoteText</title>
         <link rel="stylesheet" href="app.css">
-        <link rel="shortcut icon" href="src/Mai.jpg">
+        <link rel="shortcut icon" href="src/ImFly.gif">
     </head>
     <body>
-        <div id="app" style="width: 100%;padding: 0; margin: 0;"
+        <div id="app" style="width: 100%;padding: 0; margin: 0;height: 100%;"
         >
             <div class="content" style="height: auto;"
                 >
                 <div style="text-align: end; color:black">
                     Picker Color 
-                    <select v-model="pickColor" @change="chooseColorBackGround(pickColor)">
-                        <option value="Default">Default</option>
-                        <option value="Aquamarine">Aquamarine</option>
-                        <option value="Gray">Gray</option>
-                        <option value="Green">Green</option>
-                        <option value="RedPink">RedPink</option>
-                        <option value="Silver">Silver</option>
+                    <select v-model="pickColor"  @change="chooseColorBackGround(pickColor)">
+                        <option :value="pickColor" v-for="pickColor in colorOptions">{{pickColor}}</option>
                     </select>
                 </div>
     

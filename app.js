@@ -30,6 +30,10 @@ Vue.createApp ({
             pageActive: 1,
 
             pickColor: 'Default',
+            colorOptions: [
+                'Default','Aquamarine','Gray','Green','RedPink','Silver', //Color Simple
+                'Gradient-SunSet','Gradient-Ocean','Gradient-Dawn','Gradient-Sun','Gradient-Grass' //Color Gradient
+            ]
         };
     },
 
@@ -51,7 +55,9 @@ Vue.createApp ({
     methods: {
         index(){
             this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];   
-            this.diary = JSON.parse(localStorage.getItem("diary")) || [];   
+            this.diary = JSON.parse(localStorage.getItem("diary")) || [];
+            this.pickColor = JSON.parse(localStorage.getItem("backgroundColor")) || 'Default';  
+            this.chooseColorBackGround(this.pickColor);
 
             if (this.tasks.length > 0){
                 this.paginationData(this.tasks);
@@ -321,23 +327,46 @@ Vue.createApp ({
         },
 
         chooseColorBackGround(pickColor){
+            var background = document.getElementById('html');
+            background.style.height = '100%'
             if (pickColor == 'Default'){
-                document.getElementById('html').style.backgroundColor = '#fcdad5';
+                background.style.backgroundColor = '#fcdad5';
+                background.style.backgroundImage = 'none';
             }
             if (pickColor == 'Aquamarine'){
-                document.getElementById('html').style.backgroundColor = 'aquamarine';
+                background.style.backgroundColor = 'aquamarine';
+                background.style.backgroundImage = 'none';
             } 
             if (pickColor == 'Gray'){
-                document.getElementById('html').style.backgroundColor = 'rgb(160,160,160)';
+                background.style.backgroundColor = 'rgb(160,160,160)';
+                background.style.backgroundImage = 'none';
             }
             if (pickColor == 'Green'){
-                document.getElementById('html').style.backgroundColor = 'rgb(153,255,153)';
+                background.style.backgroundColor = 'rgb(153,255,153)';
+                background.style.backgroundImage = 'none';
             }
             if (pickColor == 'RedPink'){
-                document.getElementById('html').style.backgroundColor = 'rgb(255,204,153)';
+                background.style.backgroundColor = 'rgb(255,204,153)';
             }
             if (pickColor == 'Silver'){
-                document.getElementById('html').style.backgroundColor = 'rgb(224,224,224)';
+                background.style.backgroundColor = 'rgb(224,224,224)';
+                background.style.backgroundImage = 'none';
+            }
+            // Gradient Color
+            if (pickColor == 'Gradient-SunSet'){
+                background.style.backgroundImage = 'linear-gradient(#F9AD6A, #43978D)';
+            }
+            if (pickColor == 'Gradient-Ocean'){
+                background.style.backgroundImage = 'linear-gradient(to top, #264D59, #43978D)';
+            }
+            if (pickColor == 'Gradient-Dawn'){
+                background.style.backgroundImage = 'linear-gradient(#43978D, #F9E07F)';
+            }
+            if (pickColor == 'Gradient-Sun'){
+                background.style.backgroundImage = 'linear-gradient(to top,#F9E07F, #F9AD6A)';
+            }
+            if (pickColor == 'Gradient-Grass'){
+                background.style.backgroundImage = 'linear-gradient(#F9E2AE, #A7D676)';
             }
             localStorage.setItem("backgroundColor", JSON.stringify(pickColor));
         },
