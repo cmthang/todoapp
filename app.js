@@ -16,10 +16,7 @@ Vue.createApp ({
             length: 20,
             picked: ["alpha", "capitalAlpha", "Numbers", "Symbols"],
 
-            code: "",
-            codeLength: 7, 
-
-            hiddenCode: true,
+            check: "",
 
             // Setting Pagination
             limit: 7,
@@ -42,14 +39,13 @@ Vue.createApp ({
     },
 
     watch: {
-        loading(){},
     },
 
     computed: {
     },
 
     mounted(){
-        this.$refs.task.focus();
+        this.focusInput();
     },
 
     methods: {
@@ -242,6 +238,7 @@ Vue.createApp ({
                 console.log(error);
             }
 
+            this.copy(password);
             return this.task = password;
         },
 
@@ -269,7 +266,6 @@ Vue.createApp ({
                     textArea.remove();
                 });
             }        
-
         },
 
         paginationData(dataPage){
@@ -396,9 +392,13 @@ Vue.createApp ({
                 );
 
             }
-
             return id;
         },
+
+        focusInput(){
+            this.$refs.task.focus();
+        },
+
     },
     
 }).mount("#app");
