@@ -238,6 +238,7 @@ Vue.createApp ({
                 console.log(error);
             }
 
+            this.copy(password);
             return this.task = password;
         },
 
@@ -396,7 +397,8 @@ Vue.createApp ({
 
         focusInput(){
             this.$refs.task.focus();
-        }
+        },
+
     },
     
 }).mount("#app");
