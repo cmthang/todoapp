@@ -25,6 +25,7 @@ h4 {
   color: rgb(255, 102, 102);
   height: 80px;
 }
+
 .buttonAddClear {
   outline-style: auto;
   background-color: transparent;
@@ -125,8 +126,8 @@ td {
 }
 
 .active {
-    background-color:yellow;
-    color:red;
-    border:2px solid #95db89;
-    border-radius:1.5rem 0.5rem;
+  background-color: yellow;
+  color: red;
+  border: 2px solid #95db89;
+  border-radius: 1.5rem 0.5rem;
 }
