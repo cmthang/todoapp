@@ -80,10 +80,14 @@ Vue.createApp({
     },
 
     addTask() {
+      let currentDateTime = new Date();
+
       if (this.task != "") {
         this.tasks.push({
           id: this.randomId(),
           name: this.task,
+          created: currentDateTime,
+          updated: currentDateTime,
         });
         localStorage.setItem("tasks", JSON.stringify(this.tasks));
         this.task = "";
@@ -151,11 +155,14 @@ Vue.createApp({
     },
 
     fixTask(index) {
+      let currentDateTime = new Date();
       this.action = "Fix Task";
       if (this.task != "") {
-        var fixTask = {
+        let fixTask = {
           id: this.tasks[index]["id"],
           name: this.tasks[index]["name"],
+          created: this.tasks[index]["created"],
+          updated: currentDateTime,
         };
         this.fixTasks.push(fixTask);
         this.tasks[index]["name"] = this.task;
@@ -297,7 +304,7 @@ Vue.createApp({
           this.displayPaginationPage(this.currentPage);
         }
       } catch (Ex) {
-        console.log("Error: " + ex);
+        console.log("Error: " + Ex);
       }
     },
 
@@ -384,5 +391,42 @@ Vue.createApp({
     focusInput() {
       this.$refs.task.focus();
     },
+
+    sendMessageWebhook() {
+      let currentDateTime = new Date();
+
+      const url =
+        "https://discord.com/api/webhooks/1085023952113516636/ekHpJBGvW2bdysVy6LknGwsQ7XEYJzhZTOFVt5aJPsMNCcwodm2P_CUbBYGlnQSDPQWb";
+
+      let tasks = JSON.stringify(this.tasks);
+      let diary = JSON.stringify(this.diary);
+
+      const message = {
+        username: "Dragon Bot",
+        content: "Boss! Time:" + currentDateTime,
+        embeds: [
+          {
+            title: "Task",
+            description: tasks,
+            color: 15684489,
+          },
+          {
+            title: "Diary",
+            description: diary,
+            color: 14177041,
+          },
+        ],
+      };
+
+      axios
+        .post(url, message)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 }).mount("#app");
+
