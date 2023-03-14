@@ -62,7 +62,12 @@ Version 13:
     Date: Friday, December 2nd, 2022.
     Note: Update button Generate Auto Copy.
 
-Version 14: 
+Version 14:
 
     Date: Tuesday, December 27th, 2022.
     Note: Format code.
+
+Version 15:
+
+    Date: Monday, March 13th, 2023.
+    Note: Add button webhook discord and more information about the session.
