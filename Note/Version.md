@@ -1,4 +1,5 @@
 # todoapp
+
 This is a web app that uses Vuejs CDN and Localstorage to store texts note.
 
 Version 4:
@@ -7,9 +8,9 @@ Version 4:
     Note: Move the js code to a separate file. More buttons Password, Copy.
 
 Version 4.1:
-    
+
     Date: Thursday, August 18th 2022.
-    Note: Fix button Copy can work on http. 
+    Note: Fix button Copy can work on http.
 
 Version 5:
 
@@ -19,14 +20,14 @@ Version 5:
 Version 6: (Deleted)
 
     Date: Monday, August 29th 2022.
-    Note: Full Api Accounts. 
-    
+    Note: Full Api Accounts.
+
 Version 7: (Simple Page)
 
     Date: Friday, November 04th 2022.
-    Note: Website Minimalist. Add picker color. 
+    Note: Website Minimalist. Add picker color.
 
-Version 8: 
+Version 8:
 
     Date: Wednesday, November 09th 2022.
     Note: Pagination page. Picker color.
@@ -40,7 +41,7 @@ Version 9:
               (Ctrl+Home) -> Generate Password
               (Ctrl+End) -> Next Page.
 
-Version 10: 
+Version 10:
 
     Date: Thursday, November 10th 2022.
     Note: Switch Array (ctrl+backspace).
@@ -53,10 +54,20 @@ Version 11:
 Version 12:
 
     Date: Friday, November 18th 2022.
-    Note: Collapse the color picker and random id. Add gradient colors to the palette. 
+    Note: Collapse the color picker and random id. Add gradient colors to the palette.
     Change short-icon gif.
 
-Version 13: 
+Version 13:
 
     Date: Friday, December 2nd, 2022.
     Note: Update button Generate Auto Copy.
+
+Version 14:
+
+    Date: Tuesday, December 27th, 2022.
+    Note: Format code.
+
+Version 15:
+
+    Date: Monday, March 13th, 2023.
+    Note: Add button webhook discord and more information about the session.
